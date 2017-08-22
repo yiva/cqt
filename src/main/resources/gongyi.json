@@ -1,0 +1,13 @@
+{
+	'class':'Account',
+	'category':'1',
+	'columns':{
+		'ac_date':'1',
+		'ac_type':'2',
+		'ac_content':'3',
+		'ac_cost_in':'4',
+		'ac_cost_out':'5',
+		'ac_handler':'7',
+		'ac_comment':'8'
+	}
+};
