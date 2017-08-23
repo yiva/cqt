@@ -23,6 +23,6 @@ public class JsonUtil {
 			sb.append(new String(bs,"utf-8"));
 		}
 		bi.close();
-		return sb.toString();
+		return sb.toString().trim();
 	}
 }
