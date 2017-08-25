@@ -17,7 +17,7 @@ public class ExcelDaoImpl extends BaseDao implements IExcelDao{
 				+"(ac_title, ac_date, ac_type, ac_content, ac_cost,"
 				+"ac_handler,ac_comment,ac_category,ac_num,create_time," 
 				+"update_time)"
-				+" values(:id,:ac_title,:ac_date,:ac_type,:ac_content,"
+				+" values(:ac_title,:ac_date,:ac_type,:ac_content,"
 				+":ac_cost,:ac_handler,:ac_comment,:ac_category,:ac_num,"
 				+":create_time,:update_time')";
 		MapSqlParameterSource paramSource = new MapSqlParameterSource();
