@@ -134,6 +134,7 @@ public class ExcelUtil {
 	 * @param filename
 	 * @return
 	 */
+	@SuppressWarnings("resource")
 	public static <T> boolean writeSheet(String filename ,ArrayList<T> list){
 		try {
 			//传入的文件  

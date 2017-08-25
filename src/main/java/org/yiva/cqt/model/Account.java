@@ -1,6 +1,11 @@
 package org.yiva.cqt.model;
 
+import java.io.Serializable;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
+
+import org.springframework.jdbc.core.RowMapper;
 
 /**
  * 台账信息
@@ -8,8 +13,15 @@ import java.util.Date;
  * @author yiva 对应t_account_detail
  *
  */
-public class Account {
+public class Account implements RowMapper<Account>,Serializable  {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5082739535511147663L;
+	/**
+	 * 
+	 */
 	private Integer id;// ID
 	private String ac_title;// 主题
 	private String ac_date;// 日期
@@ -117,5 +129,23 @@ public class Account {
 
 	public void setUpdate_time(Date update_time) {
 		this.update_time = update_time;
+	}
+
+	@Override
+	public Account mapRow(ResultSet rs, int rowNum) throws SQLException {
+		Account account = new Account();
+		account.setId(rs.getInt("id"));
+		account.setAc_title(rs.getString("ac_title"));
+		account.setAc_date(rs.getDate("ac_date").toString());
+		account.setAc_type(rs.getInt("ac_type"));
+		account.setAc_content(rs.getString("ac_content"));
+		account.setAc_cost(rs.getFloat("ac_cost"));
+		account.setAc_handler(rs.getString("ac_handler"));
+		account.setAc_comment(rs.getString("ac_comment"));
+		account.setAc_category(rs.getInt("ac_category"));
+		account.setAc_num(rs.getInt("ac_num"));
+		account.setCreate_time(rs.getDate("create_time"));
+		account.setUpdate_time(rs.getDate("update_time"));
+		return account;
 	}
 }
