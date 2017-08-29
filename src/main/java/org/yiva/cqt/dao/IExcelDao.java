@@ -6,5 +6,5 @@ import org.yiva.cqt.model.Account;
 
 public interface IExcelDao {
 
-	int saveAccountFromExecl(ArrayList<Account> arr);
+	int saveAccountFromExecl(final ArrayList<Account> arr);
 }
