@@ -6,5 +6,9 @@ import org.yiva.cqt.model.Account;
 
 public interface IExcelDao {
 
-	int saveAccountFromExecl(final ArrayList<Account> arr);
+	//导入公益金
+	int saveAccountGongYiFromExecl(final ArrayList<Account> arr);
+	
+	//导入赞赏款
+	int saveAccountZanXhangFromExecl(final ArrayList<Account> arr);
 }

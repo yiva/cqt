@@ -32,7 +32,7 @@ public class ExcelImportImpl implements IExcel {
 			 * Excel解析
 			 */
 			ArrayList<Account> arr_account = ExcelCqt.importExcelGongyi(wb);
-			int res = excelDao.saveAccountFromExecl(arr_account);
+			int res = excelDao.saveAccountGongYiFromExecl(arr_account);
 			if (-1 == res) {
 				return -1;
 			}
