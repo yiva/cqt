@@ -1,1 +1,1 @@
-{"class":"Account","sheet":"2-赞赏款","ac_category":"2","row":"4","col":"0","columns":{"ac_date":"1","ac_type":"2","ac_content":"3","ac_cost_in":"4","ac_cost_out":"5","ac_handler":"7","ac_comment":"8"}}
+{"class":"Account","sheet":"2-赞赏款","ac_category":"2","row":"4","col":"0","columns":{"ac_title":"-1","ac_date":"1","ac_type":"2","ac_content":"3","ac_cost_in":"4","ac_cost_out":"5","ac_handler":"7","ac_comment":"8","ac_num":"-1"}}

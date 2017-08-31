@@ -4,6 +4,6 @@ import java.io.InputStream;
 
 public interface IExcel {
 	
-	int importExcelTest(InputStream in, String filename);
+	int importExcelAccount(InputStream in, String filename, String account_category);
 
 }

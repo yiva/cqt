@@ -20,7 +20,7 @@ public class ExcelDaoImpl extends BaseDao implements IExcelDao {
 	 * 导入公益金
 	 */
 	@Override
-	public int saveAccountGongYiFromExecl(final ArrayList<Account> arr) {
+	public int saveAccountFromExecl(final ArrayList<Account> arr) {
 			int[] result_count_size = jdbcTemplate.batchUpdate(
 					ConstantSQL.SQL_ACCOUNT_DETAIL_GONGYI_INSERT,
 					new BatchPreparedStatementSetter() {
@@ -36,9 +36,10 @@ public class ExcelDaoImpl extends BaseDao implements IExcelDao {
 							ps.setString(6, arr.get(i).getAc_handler());
 							ps.setString(7, arr.get(i).getAc_comment());
 							ps.setInt(8, arr.get(i).getAc_category());
-							ps.setTimestamp(9,
-									new Timestamp(new Date().getTime()));
+							ps.setInt(9, arr.get(i).getAc_num());
 							ps.setTimestamp(10,
+									new Timestamp(new Date().getTime()));
+							ps.setTimestamp(11,
 									new Timestamp(new Date().getTime()));
 
 						}
@@ -53,18 +54,18 @@ public class ExcelDaoImpl extends BaseDao implements IExcelDao {
 			for (int a : result_count_size) {
 				sum_inserted_count += a;
 			}
-		// String sql = "insert into db_cqt.t_account_detail"
-		// +"(ac_title, ac_date, ac_type, ac_content, ac_cost,"
-		// +"ac_handler,ac_comment,ac_category,ac_num,create_time,"
-		// +"update_time)"
-		// +" values(:ac_title,:ac_date,:ac_type,:ac_content,"
-		// +":ac_cost,:ac_handler,:ac_comment,:ac_category,:ac_num,"
-		// +":create_time,:update_time')";
-		// MapSqlParameterSource paramSource = new MapSqlParameterSource();
-		// paramSource.addValue("ac_title", value)
 		return sum_inserted_count;
 	}
 
+	// String sql = "insert into db_cqt.t_account_detail"
+			// +"(ac_title, ac_date, ac_type, ac_content, ac_cost,"
+			// +"ac_handler,ac_comment,ac_category,ac_num,create_time,"
+			// +"update_time)"
+			// +" values(:ac_title,:ac_date,:ac_type,:ac_content,"
+			// +":ac_cost,:ac_handler,:ac_comment,:ac_category,:ac_num,"
+			// +":create_time,:update_time')";
+			// MapSqlParameterSource paramSource = new MapSqlParameterSource();
+			// paramSource.addValue("ac_title", value)
 	/**
 	 * 导入赞赏款
 	 */

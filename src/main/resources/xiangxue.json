@@ -1,0 +1,18 @@
+{
+    "class": "Account",
+    "sheet": "3-奖学金",
+    "ac_category": "3",
+    "row": "4",
+    "col": "0",
+    "columns": {
+        "ac_title": "-1",
+        "ac_date": "1",
+        "ac_type": "2",
+        "ac_content": "3",
+        "ac_cost_in": "4",
+        "ac_cost_out": "5",
+        "ac_handler": "7",
+        "ac_comment": "8",
+        "ac_num": "-1"
+    }
+}

@@ -21,7 +21,8 @@ public class ExcelImportImpl implements IExcel {
 	private IExcelDao excelDao;
 
 	@Override
-	public int importExcelTest(InputStream in, String filename) {
+	public int importExcelAccount(InputStream in, String filename, String account_category) {
+		int flag = -1;
 		Workbook wb = null;
 		try {
 			wb = ExcelUtil.getWorkbook(in, filename);
@@ -31,16 +32,22 @@ public class ExcelImportImpl implements IExcel {
 			/*
 			 * Excel解析
 			 */
-			ArrayList<Account> arr_account = ExcelCqt.importExcelGongyi(wb);
-			int res = excelDao.saveAccountGongYiFromExecl(arr_account);
-			if (-1 == res) {
-				return -1;
+			ArrayList<Account> arr_account = new ArrayList<Account>();
+			if ("all".equals(account_category)) {
+				arr_account = ExcelCqt.importExcelAccountAll(wb);
+			}else{
+				arr_account = ExcelCqt.importExcelAccount(wb,account_category);
+			}
+			int res = excelDao.saveAccountFromExecl(arr_account);
+			if (1 <= res) {
+				flag = 0;
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
+			flag = -1;
 			e.printStackTrace();
 		} 
-		return 0;
+		return flag;
 	}
 
 }
