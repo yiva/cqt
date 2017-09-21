@@ -2,6 +2,7 @@ package org.yiva.cqt.action;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,7 +19,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+import org.yiva.cqt.core.IAccountService;
 import org.yiva.cqt.core.IExcel;
+import org.yiva.cqt.model.Account;
 
 @Controller
 @RequestMapping(value = { "/" })
@@ -27,10 +30,27 @@ public class IndexAction {
 	@Autowired
 	@Qualifier("excelService")
 	private IExcel excelService;
+	
+	@Autowired
+	@Qualifier("accountService")
+	private IAccountService accountService;
+	
 
-	@RequestMapping(value = { "/", "accountImport" })
+	@RequestMapping(value = { "accountImport" })
 	public ModelAndView importPage() {
 		ModelAndView mv = new ModelAndView("import");
+		return mv;
+	}
+	
+	@RequestMapping(value = { "/", "showAccounts" })
+	public ModelAndView showAllAccounts() {
+		ModelAndView mv = new ModelAndView("account/all_accounts");
+		ArrayList<Account> accountlist = new ArrayList<Account>();
+		accountlist = accountService.findAllAccount();
+		if (null == accountlist) {
+			mv.addObject("accountlist", null);
+		}
+		mv.addObject("accountlist", accountlist);
 		return mv;
 	}
 

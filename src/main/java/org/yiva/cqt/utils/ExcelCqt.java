@@ -23,8 +23,7 @@ public class ExcelCqt {
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 */
-	public static ArrayList<Account> importExcelAccount(Workbook wb,
-			String sourceName) {
+	public static ArrayList<Account> importExcelAccount(Workbook wb, String sourceName) {
 
 		// Json文件解析
 		String json = "";
@@ -32,7 +31,10 @@ public class ExcelCqt {
 			json = JsonUtil.readJsonFile(sourceName + ".json");
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
-			System.err.println("filename: "+sourceName+" -- "+e1.getMessage());
+			System.err.println("filename: " + sourceName + " -- " + e1.getMessage());
+			return null;
+		} catch (Exception ex) {
+			System.err.println("filename: " + sourceName + " -- " + ex.getMessage());
 			return null;
 		}
 		JSONObject jo = JSON.parseObject(json);
@@ -53,29 +55,22 @@ public class ExcelCqt {
 
 			try {
 				if (-1 != jo_columns.getIntValue("ac_title")) {
-					account.setAc_title(sheet.getRow(i)
-							.getCell(jo_columns.getIntValue("ac_title"))
-							.toString().trim());
+					account.setAc_title(sheet.getRow(i).getCell(jo_columns.getIntValue("ac_title")).toString().trim());
 				}
 
 				account.setAc_num((-1 == jo_columns.getIntValue("ac_num")) ? -1
-						: Integer.parseInt(sheet.getRow(i)
-								.getCell(jo_columns.getIntValue("ac_num"))
-								.toString().trim()));
+						: Integer
+								.parseInt(sheet.getRow(i).getCell(jo_columns.getIntValue("ac_num")).toString().trim()));
 				account.setAc_category(category);
-				
+
 				Date date = sheet.getRow(i).getCell(jo_columns.getIntValue("ac_date")).getDateCellValue();
 				String df = DateFormatUtils.format(date, "yyyy-MM-dd");
 				account.setAc_date(df);
-				
-				account.setAc_content(sheet.getRow(i)
-						.getCell(jo_columns.getIntValue("ac_content"))
-						.toString().trim());
+
+				account.setAc_content(sheet.getRow(i).getCell(jo_columns.getIntValue("ac_content")).toString().trim());
 
 				// 类型
-				String str_type = sheet.getRow(i)
-						.getCell(jo_columns.getIntValue("ac_type")).toString()
-						.trim();
+				String str_type = sheet.getRow(i).getCell(jo_columns.getIntValue("ac_type")).toString().trim();
 				int ac_type = 0;
 				switch (str_type) {
 				case "转入":
@@ -99,23 +94,17 @@ public class ExcelCqt {
 				// 金额
 				account.setAc_type(ac_type);
 				if (0 != ac_type && 0 == ac_type % 2) {
-					account.setAc_cost(Float.valueOf(sheet.getRow(i)
-							.getCell(jo_columns.getIntValue("ac_cost_out"))
-							.toString().trim()));
+					account.setAc_cost(Float
+							.valueOf(sheet.getRow(i).getCell(jo_columns.getIntValue("ac_cost_out")).toString().trim()));
 				} else if (1 == ac_type % 2) {
-					account.setAc_cost(Float.valueOf(sheet.getRow(i)
-							.getCell(jo_columns.getIntValue("ac_cost_in"))
-							.toString().trim()));
+					account.setAc_cost(Float
+							.valueOf(sheet.getRow(i).getCell(jo_columns.getIntValue("ac_cost_in")).toString().trim()));
 				} else {
 					account.setAc_cost(0.0f);
 				}
 
-				account.setAc_handler(sheet.getRow(i)
-						.getCell(jo_columns.getIntValue("ac_handler"))
-						.toString().trim());
-				account.setAc_comment(sheet.getRow(i)
-						.getCell(jo_columns.getIntValue("ac_comment"))
-						.toString().trim());
+				account.setAc_handler(sheet.getRow(i).getCell(jo_columns.getIntValue("ac_handler")).toString().trim());
+				account.setAc_comment(sheet.getRow(i).getCell(jo_columns.getIntValue("ac_comment")).toString().trim());
 
 				// 添加到链表中
 				arr_zan.add(account);
@@ -127,13 +116,13 @@ public class ExcelCqt {
 		return arr_zan;
 	}
 
-	public static ArrayList<Account> importExcelAccountAll(Workbook wb){
+	public static ArrayList<Account> importExcelAccountAll(Workbook wb) {
 
 		String json;
 		try {
 			json = JsonUtil.readJsonFile("accounts.json");
 		} catch (IOException e) {
-			System.err.println("accounts.json -- "+e.getMessage());
+			System.err.println("accounts.json -- " + e.getMessage());
 			return null;
 		}
 
@@ -143,8 +132,7 @@ public class ExcelCqt {
 
 		for (int i = 0; i < js_arr.size(); i++) {
 			ArrayList<Account> arr_account = new ArrayList<Account>();
-			arr_account = importExcelAccount(wb, js_arr.getJSONObject(i)
-					.getString("account"));
+			arr_account = importExcelAccount(wb, js_arr.getJSONObject(i).getString("account"));
 			if (arr_account.size() != 0) {
 				arr_accounts.addAll(arr_account);
 			}
