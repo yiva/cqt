@@ -5,18 +5,18 @@
     "row": "2",
     "col": "0",
     "columns": {
-        "art_num":"1"
-		"art_name":"2"
-		"art_loc":"3"
-		"art_reward":"4"
-		"art_school":"5"
-		"art_grade":"6"
-		"art_mode":"7"
-		"art_price":"8"
-		"art_trans":"9"
-		"art_trans_cost":"10"
-		"art_sender":"11"
-		"art_time":"12"
+        "art_num":"1",
+		"art_name":"2",
+		"art_loc":"3",
+		"art_reward":"4",
+		"art_school":"5",
+		"art_grade":"6",
+		"art_mode":"7",
+		"art_price":"8",
+		"art_trans":"9",
+		"art_trans_cost":"10",
+		"art_sender":"11",
+		"art_time":"12",
 		"art_remit_time":"13"
     }
 }
