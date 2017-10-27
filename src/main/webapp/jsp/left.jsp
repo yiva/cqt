@@ -13,7 +13,8 @@
 		<a href="#" class='toggle-subnav'><i class="icon-angle-down"></i><span>信息录入</span></a>
 	</div>
 	<ul class="subnav-menu">
-		<li><a href="<%=basePath %>showAccounts">台账查询</a></li>
+		<li><a href="<%=basePath %>report/showAccounts">台账查询</a></li>
+		<li><a href="<%=basePath %>report/showArticles">学习用品查询</a></li>
 	</ul>
 	<ul class="subnav-menu">
 		<li><a href="<%=basePath %>accountImport">台账录入</a></li>

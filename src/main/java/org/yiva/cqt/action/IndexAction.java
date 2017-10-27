@@ -22,9 +22,9 @@ public class IndexAction {
 	
 
 	
-	@RequestMapping(value = { "/", "showAccounts" })
+	@RequestMapping(value = { "/", "showAccounts", "report/showAccounts" })
 	public ModelAndView showAllAccounts() {
-		ModelAndView mv = new ModelAndView("account/all_accounts");
+		ModelAndView mv = new ModelAndView("report/all_accounts");
 		ArrayList<Account> accountlist = new ArrayList<Account>();
 		accountlist = accountService.findAllAccount();
 		if (null == accountlist) {

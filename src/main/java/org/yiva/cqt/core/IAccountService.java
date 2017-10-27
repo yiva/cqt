@@ -6,5 +6,5 @@ import org.yiva.cqt.model.Account;
 
 public interface IAccountService {
 
-	public ArrayList<Account> findAllAccount();
+	ArrayList<Account> findAllAccount();
 }
