@@ -40,6 +40,8 @@ public class Account implements RowMapper<Account>,Serializable  {
 	private String save_style;//款项结存
 	private String channel;//进款通道
 	private String editor;//记账人
+	private String ac_rewarder;//资助人
+	private String ac_rewarder_name;//资助人姓名
 
 	private Date create_time;//创建时间
 	private Date update_time;//更新时间
@@ -194,6 +196,23 @@ public class Account implements RowMapper<Account>,Serializable  {
 
 	public void setEditor(String editor) {
 		this.editor = editor;
+	}
+	
+
+	public String getAc_rewarder() {
+		return ac_rewarder;
+	}
+
+	public void setAc_rewarder(String ac_rewarder) {
+		this.ac_rewarder = ac_rewarder;
+	}
+
+	public String getAc_rewarder_name() {
+		return ac_rewarder_name;
+	}
+
+	public void setAc_rewarder_name(String ac_rewarder_name) {
+		this.ac_rewarder_name = ac_rewarder_name;
 	}
 
 	@Override

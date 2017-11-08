@@ -1,0 +1,18 @@
+{
+    "class": "Account",
+    "sheet": "微信公众号入账",
+    "ac_category": "8",
+    "row": "3",
+    "col": "0",
+    "columns": {
+        "ac_title": "1",
+        "ac_date": "2",
+        "ac_type": "－1",
+        "ac_content": "－1",
+        "ac_cost_in": "4",
+        "ac_cost_out": "－1",
+        "ac_handler": "7",
+        "ac_comment": "8",
+        "ac_num": "-1"
+    }
+}
