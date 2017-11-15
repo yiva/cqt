@@ -1,0 +1,23 @@
+{
+    "class": "Jounal",
+    "sheet": "流水账",
+    "row": "4",
+    "col": "0",
+    "columns": {
+    		"ac_category":"1",
+    		"ac_date": "2",
+    		"ac_type": "3",
+        "ac_content": "4",
+        "ac_price_in": "5",
+        "ac_price_out": "6",
+        "ac_operater": "7",
+        "ac_channel": "8",
+        "ac_save_style": "9",
+        "ac_poudage": "11",
+        "ac_comment":"12",
+        "ac_rewarder":"12",
+        "ac_rewarder_name":"12",
+        "ac_student":"12",
+        "ac_student_name":"12"
+    }
+}
