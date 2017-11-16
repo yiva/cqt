@@ -12,6 +12,7 @@ import org.yiva.cqt.dao.IExcelDao;
 import org.yiva.cqt.model.Account;
 import org.yiva.cqt.model.Article;
 import org.yiva.cqt.utils.ExcelCqt;
+import org.yiva.cqt.utils.ExcelCqtJounal;
 import org.yiva.cqt.utils.ExcelUtil;
 
 @Service("excelService")
@@ -36,7 +37,10 @@ public class ExcelImportImpl implements IExcel {
 			ArrayList<Account> arr_account = new ArrayList<Account>();
 			if ("all".equals(account_category)) {
 				arr_account = ExcelCqt.importExcelAccountAll(wb);
-			}else{
+			}else if("jounal".equals(account_category)) {
+				ExcelCqtJounal.importExcelJounal(wb, "jounal");
+			}
+			else{
 				arr_account = ExcelCqt.importExcelAccount(wb,account_category);
 			}
 			int res = excelDao.saveAccountFromExecl(arr_account);

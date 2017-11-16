@@ -67,6 +67,7 @@
 												<option value="wqgongzhong">微信公众号入账	</option>
 												<option value="yuebao">余额宝收益</option>
 												<option value="daizhu">待助</option>
+												<option value="jounal">流水账</option>
 											</select>
 										</div>
 									</div>

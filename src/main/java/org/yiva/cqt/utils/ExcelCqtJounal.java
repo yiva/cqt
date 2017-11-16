@@ -1,6 +1,8 @@
 package org.yiva.cqt.utils;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -32,8 +34,7 @@ public class ExcelCqtJounal {
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 */
-	public static ArrayList<Jounal> importExcelJounal(Workbook wb,
-			String sourceName) {
+	public static ArrayList<Jounal> importExcelJounal(Workbook wb, String sourceName) {
 
 		// Json文件解析
 		String json = "";
@@ -61,76 +62,25 @@ public class ExcelCqtJounal {
 		ArrayList<Jounal> arr = new ArrayList<Jounal>();
 		for (int i = row; i < sheet.getLastRowNum(); i++) {
 
-			Jounal item = new Jounal();
-
 			try {
-//				if (-1 != jo_columns.getIntValue("ac_title")) {
-//					item.setAc_title(sheet.getRow(i)
-//							.getCell(jo_columns.getIntValue("ac_title"))
-//							.toString().trim());
-//				}
-//
-//				item.setAc_num((-1 == jo_columns.getIntValue("ac_num")) ? -1
-//						: Integer.parseInt(sheet.getRow(i)
-//								.getCell(jo_columns.getIntValue("ac_num"))
-//								.toString().trim()));
-//				item.setAc_category(category);
-//
-//				Date date = sheet.getRow(i)
-//						.getCell(jo_columns.getIntValue("ac_date"))
-//						.getDateCellValue();
-//				String df = DateFormatUtils.format(date, "yyyy-MM-dd");
-//				item.setAc_date(df);
-//
-//				item.setAc_content(sheet.getRow(i)
-//						.getCell(jo_columns.getIntValue("ac_content"))
-//						.toString().trim());
-//
-//				// 类型
-//				String str_type = sheet.getRow(i)
-//						.getCell(jo_columns.getIntValue("ac_type")).toString()
-//						.trim();
-//				int ac_type = 0;
-//				switch (str_type) {
-//				case "转入":
-//					ac_type = 1;
-//					break;
-//				case "转出":
-//					ac_type = 2;
-//					break;
-//				case "收入":
-//					ac_type = 3;
-//					break;
-//				case "开支":
-//					ac_type = 4;
-//					break;
-//				case "转发":
-//					ac_type = 6;
-//					break;
-//				default:
-//					break;
-//				}
-//				// 金额
-//				item.setAc_type(ac_type);
-//				if (0 != ac_type && 0 == ac_type % 2) {
-//					item.setAc_cost(Float.valueOf(sheet.getRow(i)
-//							.getCell(jo_columns.getIntValue("ac_cost_out"))
-//							.toString().trim()));
-//				} else if (1 == ac_type % 2) {
-//					item.setAc_cost(Float.valueOf(sheet.getRow(i)
-//							.getCell(jo_columns.getIntValue("ac_cost_in"))
-//							.toString().trim()));
-//					item.setAc_cost(0.0f);
-//				}
-//
-//				item.setAc_handler(sheet.getRow(i)
-//						.getCell(jo_columns.getIntValue("ac_handler"))
-//						.toString().trim());
-//				item.setAc_comment(sheet.getRow(i)
-//						.getCell(jo_columns.getIntValue("ac_comment"))
-//						.toString().trim());
-
-				// 添加到链表中
+				// 获得Jounal类
+				Class<Jounal> cl = Jounal.class;
+				// new the model
+				Jounal item = cl.newInstance();
+				// get all methods of the class
+				Method[] methods = cl.getDeclaredMethods();
+				// 获得所有属性
+				Field[] fields = cl.getDeclaredFields();
+				// 历遍属性并赋值
+				for (Field field : fields) {
+					String name = field.getName();
+					if (jo_columns.containsKey(name) && -1 != jo_columns.getIntValue(name)) {
+						String method_name = "set" + name.toUpperCase().substring(0, 1) + name.substring(1);
+						Method method = cl.getMethod(method_name, new Class[] { field.getType() });
+						method.invoke(item,
+								sheet.getRow(i).getCell(jo_columns.getIntValue(name)).toString().trim());
+					}
+				}
 				arr.add(item);
 
 			} catch (Exception e) {
