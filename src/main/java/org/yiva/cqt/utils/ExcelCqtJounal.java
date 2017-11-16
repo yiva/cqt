@@ -77,8 +77,23 @@ public class ExcelCqtJounal {
 					if (jo_columns.containsKey(name) && -1 != jo_columns.getIntValue(name)) {
 						String method_name = "set" + name.toUpperCase().substring(0, 1) + name.substring(1);
 						Method method = cl.getMethod(method_name, new Class[] { field.getType() });
-						method.invoke(item,
-								sheet.getRow(i).getCell(jo_columns.getIntValue(name)).toString().trim());
+						String fieldType = field.getType().getSimpleName();//获取属性类型
+						switch(fieldType) {
+						case "String":
+							method.invoke(item,
+									sheet.getRow(i).getCell(jo_columns.getIntValue(name)).toString().trim());
+							break;
+						case "Integer":
+						case "int":
+							method.invoke(item,
+									Integer.parseInt(sheet.getRow(i).getCell(jo_columns.getIntValue(name)).toString().trim()));
+							break;
+						case "float":
+						case "Float":
+							method.invoke(item,
+									Float.parseFloat(sheet.getRow(i).getCell(jo_columns.getIntValue(name)).toString().trim()));
+							break;
+						}
 					}
 				}
 				arr.add(item);
