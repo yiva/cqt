@@ -24,11 +24,15 @@ public class Jounal implements RowMapper<Jounal>,Serializable  {
 	 * 
 	 */
 	private Integer id;// ID
-	private Integer ac_category;// 台账类型(0：一对一，1:公益金，2：赞赏款，3：奖学金，4：滞留助学金收支，5：其他，6：独立流水，7：微信提现流水，8：微信公众号入账，9：余额宝收益,10:待助)
+	private String ac_category;// 台账类型(0：一对一，1:公益金，2：赞赏款，3：奖学金，4：滞留助学金收支，5：其他，6：独立流水，7：微信提现流水，8：微信公众号入账，9：余额宝收益,10:待助)
 	private String ac_date;// 日期
+	private Date ac_date_t;//读取日期
 	private Integer ac_type;// 收支类别(1:转入，2：转出，3：收入，4：开支)
+	private String ac_type_name;// 收支类别名(1:转入，2：转出，3：收入，4：开支)
 	private String ac_content;// 摘要
 	private Float ac_price;// 收支金额
+	private Float ac_price_in;//收入
+	private Float ac_price_out;//支出
 	private String ac_operater;// 经手人
 	private String ac_channel;//进款通道
 	private String ac_save_style;//款项结存
@@ -50,11 +54,11 @@ public class Jounal implements RowMapper<Jounal>,Serializable  {
 		this.id = id;
 	}
 
-	public Integer getAc_category() {
+	public String getAc_category() {
 		return ac_category;
 	}
 
-	public void setAc_category(Integer ac_category) {
+	public void setAc_category(String ac_category) {
 		this.ac_category = ac_category;
 	}
 
@@ -178,15 +182,51 @@ public class Jounal implements RowMapper<Jounal>,Serializable  {
 		this.update_time = update_time;
 	}
 
+	public Float getAc_price_in() {
+		return ac_price_in;
+	}
+
+	public void setAc_price_in(Float ac_price_in) {
+		this.ac_price_in = ac_price_in;
+	}
+
+	public Float getAc_price_out() {
+		return ac_price_out;
+	}
+
+	public void setAc_price_out(Float ac_price_out) {
+		this.ac_price_out = ac_price_out;
+	}
+
+	public String getAc_type_name() {
+		return ac_type_name;
+	}
+
+	public void setAc_type_name(String ac_type_name) {
+		this.ac_type_name = ac_type_name;
+	}
+
+	public Date getAc_date_t() {
+		return ac_date_t;
+	}
+
+	public void setAc_date_t(Date ac_date_t) {
+		this.ac_date_t = ac_date_t;
+	}
+
 	@Override
 	public Jounal mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Jounal model = new Jounal();
 		model.setId(rs.getInt("id"));
-		model.setAc_category(rs.getInt("ac_category"));
+		model.setAc_category(rs.getString("ac_category"));
 		model.setAc_date(rs.getDate("ac_date").toString());
+		model.setAc_date_t(rs.getDate("ac_date_t"));
 		model.setAc_type(rs.getInt("ac_type"));
+		model.setAc_type_name(rs.getString("ac_type_name"));
 		model.setAc_content(rs.getString("ac_content"));
 		model.setAc_price(rs.getFloat("ac_price"));
+		model.setAc_price_in(rs.getFloat("ac_price_in"));
+		model.setAc_price_out(rs.getFloat("ac_price_out"));
 		model.setAc_operater(rs.getString("ac_operater"));
 		model.setAc_channel(rs.getString("ac_channel"));
 		model.setAc_save_style(rs.getString("ac_save_style"));

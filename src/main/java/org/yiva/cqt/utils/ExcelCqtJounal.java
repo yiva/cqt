@@ -78,24 +78,53 @@ public class ExcelCqtJounal {
 						String method_name = "set" + name.toUpperCase().substring(0, 1) + name.substring(1);
 						Method method = cl.getMethod(method_name, new Class[] { field.getType() });
 						String fieldType = field.getType().getSimpleName();//获取属性类型
-						switch(fieldType) {
-						case "String":
-							method.invoke(item,
-									sheet.getRow(i).getCell(jo_columns.getIntValue(name)).toString().trim());
-							break;
-						case "Integer":
-						case "int":
-							method.invoke(item,
-									Integer.parseInt(sheet.getRow(i).getCell(jo_columns.getIntValue(name)).toString().trim()));
-							break;
-						case "float":
-						case "Float":
-							method.invoke(item,
-									Float.parseFloat(sheet.getRow(i).getCell(jo_columns.getIntValue(name)).toString().trim()));
-							break;
+						try {
+							switch(fieldType) {
+							case "String":
+								method.invoke(item,
+										sheet.getRow(i).getCell(jo_columns.getIntValue(name)).toString().trim());
+								break;
+							case "Integer":
+							case "int":
+								method.invoke(item,
+										Integer.parseInt(sheet.getRow(i).getCell(jo_columns.getIntValue(name)).toString().trim()));
+								break;
+							case "float":
+							case "Float":
+								method.invoke(item,
+										Float.parseFloat(sheet.getRow(i).getCell(jo_columns.getIntValue(name)).toString().trim()));
+								break;
+							case "Date":
+								Date date = sheet.getRow(i).getCell(jo_columns.getIntValue(name)).getDateCellValue();
+								method.invoke(item, date);
+								break;
+							default:
+								break;
+							}
+						}catch(Exception e) {
+							logger.warn(i+" -- "+ name + " -- " + e.getMessage());
 						}
+						
 					}
 				}
+				switch(item.getAc_type_name()) {
+				case "转入":
+				case "收入":
+					item.setAc_type(1);
+					item.setAc_price(item.getAc_price_in());
+					break;
+				case "转出":
+				case "开支":
+					item.setAc_type(2);
+					item.setAc_price(-(item.getAc_price_out()));
+					break;
+				}
+				
+				if (null == item.getAc_poudage()) {
+					item.setAc_poudage(0.0f);
+				}
+				String df = DateFormatUtils.format(item.getAc_date_t(), "yyyy-MM-dd");
+				item.setAc_date(df);
 				arr.add(item);
 
 			} catch (Exception e) {

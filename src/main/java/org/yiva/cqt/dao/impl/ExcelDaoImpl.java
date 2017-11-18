@@ -14,6 +14,7 @@ import org.yiva.cqt.dao.ConstantSQL;
 import org.yiva.cqt.dao.IExcelDao;
 import org.yiva.cqt.model.Account;
 import org.yiva.cqt.model.Article;
+import org.yiva.cqt.model.Jounal;
 
 @Repository("excelDao")
 public class ExcelDaoImpl extends BaseDao implements IExcelDao {
@@ -66,15 +67,6 @@ public class ExcelDaoImpl extends BaseDao implements IExcelDao {
 		return sum_inserted_count;
 	}
 
-	// String sql = "insert into db_cqt.t_account_detail"
-	// +"(ac_title, ac_date, ac_type, ac_content, ac_cost,"
-	// +"ac_handler,ac_comment,ac_category,ac_num,create_time,"
-	// +"update_time)"
-	// +" values(:ac_title,:ac_date,:ac_type,:ac_content,"
-	// +":ac_cost,:ac_handler,:ac_comment,:ac_category,:ac_num,"
-	// +":create_time,:update_time')";
-	// MapSqlParameterSource paramSource = new MapSqlParameterSource();
-	// paramSource.addValue("ac_title", value)
 
 	/**
 	 * 导入学习用品台账
@@ -122,6 +114,54 @@ public class ExcelDaoImpl extends BaseDao implements IExcelDao {
 			sum_inserted_count += result_count_size[i];
 		}
 		logger.info("insert Articles counts is " + sum_inserted_count);
+		return sum_inserted_count;
+	}
+
+	@Override
+	public int saveJounalFromExecl(final ArrayList<Jounal> arr) {
+		int sum_inserted_count = 0;
+		int[] result_count_size = jdbcTemplate.batchUpdate(
+				ConstantSQL.SQL_JOUNAL_INSERT,
+				new BatchPreparedStatementSetter() {
+
+					@Override
+					public void setValues(PreparedStatement ps, int i)
+							throws SQLException {
+							ps.setString(1, arr.get(i).getAc_category());
+							ps.setString(2, arr.get(i).getAc_date());
+							ps.setInt(3, arr.get(i).getAc_type());
+							ps.setString(4, arr.get(i).getAc_type_name());
+							ps.setString(5, arr.get(i).getAc_content());
+							ps.setFloat(6, arr.get(i).getAc_price());
+							ps.setString(7, arr.get(i).getAc_operater());
+							ps.setString(8, arr.get(i).getAc_channel());
+							ps.setString(9, arr.get(i).getAc_save_style());
+							ps.setFloat(10, arr.get(i).getAc_poudage());
+							ps.setString(11, arr.get(i).getAc_comment());
+							ps.setString(12, arr.get(i).getAc_rewarder());
+							ps.setString(13, arr.get(i).getAc_rewarder_name());
+							ps.setString(14, arr.get(i).getAc_student());
+							ps.setString(15, arr.get(i).getAc_student_name());
+							ps.setTimestamp(16,
+									new Timestamp(new Date().getTime()));
+							ps.setTimestamp(17,
+									new Timestamp(new Date().getTime()));
+					}
+
+					@Override
+					public int getBatchSize() {
+						// TODO Auto-generated method stub
+						return arr.size();
+					}
+				});
+
+		for (int i = 0; i < result_count_size.length; ++i) {
+			if (0 == result_count_size[i]) {
+				logger.warn("error insert Jounal of row num is " + i);
+			}
+			sum_inserted_count += result_count_size[i];
+		}
+		logger.info("insert Jounal counts is " + sum_inserted_count);
 		return sum_inserted_count;
 	}
 

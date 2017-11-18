@@ -54,9 +54,14 @@ public class ImportAction {
 		InputStream in = null;
 		MultipartFile file = multipartRequest.getFile("file");
 		in = file.getInputStream();
+		int res = 0;
+		if ("jounal".equals(account_category)) {
+			res = excelService.importExcelJounal(in, file.getOriginalFilename());
+		}else {
+			res = excelService.importExcelAccount(in, file.getOriginalFilename(),
+					account_category);
+		}
 		
-		int res = excelService.importExcelAccount(in, file.getOriginalFilename(),
-				account_category);
 		return res + "";
 	}
 	

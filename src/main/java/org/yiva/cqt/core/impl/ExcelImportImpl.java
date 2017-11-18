@@ -11,6 +11,7 @@ import org.yiva.cqt.core.IExcel;
 import org.yiva.cqt.dao.IExcelDao;
 import org.yiva.cqt.model.Account;
 import org.yiva.cqt.model.Article;
+import org.yiva.cqt.model.Jounal;
 import org.yiva.cqt.utils.ExcelCqt;
 import org.yiva.cqt.utils.ExcelCqtJounal;
 import org.yiva.cqt.utils.ExcelUtil;
@@ -81,4 +82,28 @@ public class ExcelImportImpl implements IExcel {
 		return flag;
 	}
 
+	public int importExcelJounal(InputStream in, String filename) {
+		int flag = -1;
+		Workbook wb = null;
+		try {
+			wb = ExcelUtil.getWorkbook(in, filename);
+			if (null == wb) {
+				throw new Exception("创建Excel工作薄为空！");
+			}
+			/*
+			 * Excel解析
+			 */
+			ArrayList<Jounal> arr = new ArrayList<Jounal>();
+			arr = ExcelCqtJounal.importExcelJounal(wb, "jounal");
+			int res = excelDao.saveJounalFromExecl(arr);
+			if (1 <= res) {
+				flag = 0;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			flag = -1;
+			e.printStackTrace();
+		} 
+		return flag;
+	}
 }
