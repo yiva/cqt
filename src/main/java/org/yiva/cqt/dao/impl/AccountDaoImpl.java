@@ -2,6 +2,8 @@ package org.yiva.cqt.dao.impl;
 
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -11,6 +13,7 @@ import org.yiva.cqt.model.Account;
 
 @Repository("accountDao")
 public class AccountDaoImpl extends BaseDao implements IAccountDao{
+
 
 	@Override
 	public ArrayList<Account> queryAccounts() {

@@ -19,6 +19,7 @@ import org.yiva.cqt.model.Jounal;
 @Repository("excelDao")
 public class ExcelDaoImpl extends BaseDao implements IExcelDao {
 
+
 	private static Logger logger = Logger.getLogger(ExcelDaoImpl.class);
 
 	/**

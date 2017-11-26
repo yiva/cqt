@@ -24,9 +24,22 @@ public final class ConstantSQL {
 	public final static String SQL_ARCTICLE_INSERT_T = "insert into db_cqt.t_articles("
 			+ "art_num, art_name, art_loc, art_reward, art_school,art_grade,art_mode,art_price,art_trans,"
 			+ "art_trans_cost,art_sender) values(?,?,?,?,?,?,?,?,?,?,?)";
-	
+	/**
+	 * 插入流水账
+	 */
 	public final static String SQL_JOUNAL_INSERT = "insert into db_cqt.t_jounal("
 			+ "ac_category,ac_date,ac_type,ac_type_name,ac_content,ac_price,ac_operater,ac_channel,"
 			+ "ac_save_style,ac_poudage,ac_comment,ac_rewarder,ac_rewarder_name,ac_student,ac_student_name,"
 			+ "create_time,update_time) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	
+	/**
+	 * select类
+	 */
+	
+	/**
+	 * 按账目类型查询流水账
+	 */
+	public final static String SQL_JOUNAL_BY_CATEGORY_SELECT = "select * from t_jounal j where j.ac_category = '?'";
+	
+	
 }

@@ -1,0 +1,30 @@
+{
+	"sql": [
+		{
+			"name": "insert",
+			"sql_arr": [
+				{
+					"sql_name": "SQL_JOUNAL_INSERT",
+					"sql_str": "insert into db_cqt.t_jounal(ac_category,ac_date,ac_type,ac_type_name,ac_content,ac_price,ac_operater,ac_channel,ac_save_style,ac_poudage,ac_comment,ac_rewarder,ac_rewarder_name,ac_student,ac_student_name,create_time,update_time) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+				}
+			]
+		},
+		{
+			"name": "update",
+			"sql_arr": []
+		},
+		{
+			"name": "select",
+			"sql_arr": [
+				{
+					"sql_name": "SQL_JOUNAL_BY_CATEGORY_SELECT",
+					"sql_str": "select * from t_jounal j where j.ac_category = '?'"
+				},
+				{
+					"sql_name": "SQL_JOUNAL_ALL",
+					"sql_str": "select id,ac_category,ac_date,ac_type,ac_type_name,ac_content,ac_price,ac_operater,ac_channel,ac_save_style,ac_poudage,ac_comment,ac_rewarder,ac_rewarder_name,ac_student,ac_student_name,create_time,update_time from db_cqt.t_jounal"
+				}
+			]
+		}
+	]
+}

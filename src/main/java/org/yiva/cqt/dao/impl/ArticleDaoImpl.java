@@ -14,6 +14,8 @@ import org.yiva.cqt.model.Article;
 @Repository("articleDao")
 public class ArticleDaoImpl extends BaseDao implements IArticleDao{
 
+
+
 	public ArrayList<Article> queryArticles() {
 		StringBuffer sql = new StringBuffer();
 		sql.append("select id, art_num,art_name, art_loc, art_reward,art_school,");
