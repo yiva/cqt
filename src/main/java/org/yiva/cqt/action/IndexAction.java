@@ -20,9 +20,16 @@ public class IndexAction {
 	@Qualifier("accountService")
 	private IAccountService accountService;
 	
+	
+
+	@RequestMapping(value = { "/" })
+	public ModelAndView index() {
+		ModelAndView mv = new ModelAndView("index");
+		return mv;
+	}
 
 	
-	@RequestMapping(value = { "/", "showAccounts", "report/showAccounts" })
+	@RequestMapping(value = {  "showAccounts", "report/showAccounts" })
 	public ModelAndView showAllAccounts() {
 		ModelAndView mv = new ModelAndView("report/all_accounts");
 		ArrayList<Account> accountlist = new ArrayList<Account>();

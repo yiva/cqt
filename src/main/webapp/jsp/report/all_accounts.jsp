@@ -106,8 +106,7 @@
 			$("#mkCurrentRepo").click(function() {
 				$.ajax({
 					type : "GET",
-					url : "<%=basePath%>
-		salary/mkCurrentRepo",
+					url : "<%=basePath%>salary/mkCurrentRepo",
 					data : {},
 					dataType : "json",
 					success : function(res) {

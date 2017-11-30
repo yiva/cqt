@@ -1,0 +1,21 @@
+{
+	"sql": [
+		{
+			"name": "insert",
+			"sql_arr": []
+		},
+		{
+			"name": "update",
+			"sql_arr": []
+		},
+		{
+			"name": "select",
+			"sql_arr": [
+				{
+					"sql_name": "SQL_JOUNAL_CATEGORY_COUNTS",
+					"sql_str": "select * from db_cqt.v_category_count"
+				}
+			]
+		}
+	]
+}

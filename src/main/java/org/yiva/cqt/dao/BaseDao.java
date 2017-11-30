@@ -23,11 +23,11 @@ public class BaseDao {
 	@Qualifier("jdbcTemplate")
 	protected JdbcTemplate jdbcTemplate;
 
-	protected static String sql_str;
-	protected static Logger logger;
+	protected String sql_str;
+	protected Logger logger;
 
-	protected static String json_sql;
-	protected static HashMap<String, HashMap<String,String>> sql_map;
+	protected String json_sql;
+	protected HashMap<String, HashMap<String,String>> sql_map;
 	
 	public enum SQLCATEGORY{
 		INSERT,UPDATE,SELECT
@@ -38,8 +38,9 @@ public class BaseDao {
 	}
 
 	private void gatherSQL() {
-		String json_name = StringUtils.substringBefore(this.getClass().getSimpleName(), "Dao");
 		Logger logger = Logger.getLogger(this.getClass());
+		
+		String json_name = StringUtils.substringBefore(this.getClass().getSimpleName(), "Dao");
 		// Json文件解析
 		String json = "";
 		try {
@@ -55,7 +56,6 @@ public class BaseDao {
 					JSONObject io = i_arr.getJSONObject(j);
 					map.put(io.getString("sql_name"), io.getString("sql_str"));
 				}
-				sql_map.put(item.getString("name"), map);
 			}
 		} catch (IOException e1) {
 			logger.warn("filename: " + json_name + " -- " + e1.getMessage());
@@ -75,7 +75,6 @@ public class BaseDao {
 			sql = sql_map.get("update").get(name);
 			break;
 		case SELECT:
-			HashMap m = sql_map.get("select");
 			sql = sql_map.get("select").get(name);
 			break;
 		default:
