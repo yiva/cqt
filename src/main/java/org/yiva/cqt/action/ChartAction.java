@@ -22,12 +22,21 @@ public class ChartAction {
 	private IChartService chartService;
 	
 	@RequestMapping(value = { "/jounalCategory" }, method = RequestMethod.GET, headers = { "Accept=application/json;charset=UTF-8" })
-	public @ResponseBody String imptExcelAcc(HttpServletRequest req,
+	public @ResponseBody String chartJounalCategory(HttpServletRequest req,
 			HttpServletResponse rep) throws IOException {
 //		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) req;
 		String res = "0";
 		res = chartService.showJounalCategoryCounts();
 		
+		return res;
+	}
+	
+	@RequestMapping(value = { "/jounalMonth" }, method = RequestMethod.GET, headers = { "Accept=application/json;charset=UTF-8" })
+	public @ResponseBody String chartJounalMonth(HttpServletRequest req,
+			HttpServletResponse rep) throws IOException {
+//		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) req;
+		String res = "0";
+		res = chartService.showJouanlMonthPrice();
 		return res;
 	}
 }

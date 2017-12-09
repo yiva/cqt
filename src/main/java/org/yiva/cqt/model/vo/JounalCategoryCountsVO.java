@@ -5,14 +5,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
-import org.yiva.cqt.model.Account;
 
 /**
  * 流水账类别统计
  * @author LCY
  *
  */
-public class JounalCategoryCountsVO implements RowMapper<Account>,Serializable{
+public class JounalCategoryCountsVO implements RowMapper<JounalCategoryCountsVO>,Serializable{
 
 	/**
 	 * 
@@ -38,11 +37,11 @@ public class JounalCategoryCountsVO implements RowMapper<Account>,Serializable{
 	}
 
 	@Override
-	public Account mapRow(ResultSet rs, int rowNum) throws SQLException {
+	public JounalCategoryCountsVO mapRow(ResultSet rs, int rowNum) throws SQLException {
 		JounalCategoryCountsVO model = new JounalCategoryCountsVO();
 		model.setAc_category(rs.getString("ac_category"));
 		model.setCounts(rs.getInt("counts"));
-		return null;
+		return model;
 	}
 
 	@Override

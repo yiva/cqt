@@ -3,8 +3,12 @@ package org.yiva.cqt.dao;
 import java.util.ArrayList;
 
 import org.yiva.cqt.model.vo.JounalCategoryCountsVO;
+import org.yiva.cqt.model.vo.JounalMonthInAndOutVO;
 
 public interface IChartDao {
 
-	public ArrayList<JounalCategoryCountsVO> showJounalCategoryCounts();
+	ArrayList<JounalCategoryCountsVO> showJounalCategoryCounts();
+	
+	ArrayList<JounalMonthInAndOutVO> showJounalMonthPrice();
+	
 }

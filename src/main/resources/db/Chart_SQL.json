@@ -14,6 +14,14 @@
 				{
 					"sql_name": "SQL_JOUNAL_CATEGORY_COUNTS",
 					"sql_str": "select * from db_cqt.v_category_count"
+				},
+				{
+					"sql_name": "SQL_JOUNAL_MONTH",
+					"sql_str": "select * from db_cqt.v_jounal_by_month"
+				},
+				{
+					"sql_name": "SQL_JOUNAL_MONTH_IN_AND_OUT",
+					"sql_str": "select * from v_jounal_by_month_in_and_out"
 				}
 			]
 		}
