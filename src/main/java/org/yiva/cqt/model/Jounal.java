@@ -42,6 +42,8 @@ public class Jounal implements RowMapper<Jounal>,Serializable  {
 	private String ac_rewarder_name;//资助人
 	private String ac_student;//学生编号
 	private String ac_student_name;//学生
+	private String ba_balance_id;//余额表ID
+	private Integer ac_status;//是否插入正式表状态
 
 	private Date create_time;//创建时间
 	private Date update_time;//更新时间
@@ -214,6 +216,22 @@ public class Jounal implements RowMapper<Jounal>,Serializable  {
 		this.ac_date_t = ac_date_t;
 	}
 
+	public String getBa_balance_id() {
+		return ba_balance_id;
+	}
+
+	public void setBa_balance_id(String ba_balance_id) {
+		this.ba_balance_id = ba_balance_id;
+	}
+
+	public Integer getAc_status() {
+		return ac_status;
+	}
+
+	public void setAc_status(Integer ac_status) {
+		this.ac_status = ac_status;
+	}
+
 	@Override
 	public Jounal mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Jounal model = new Jounal();
@@ -236,6 +254,8 @@ public class Jounal implements RowMapper<Jounal>,Serializable  {
 		model.setAc_rewarder_name(rs.getString("ac_rewarder_name"));
 		model.setAc_student(rs.getString("ac_student"));
 		model.setAc_student_name(rs.getString("ac_student_name"));
+		model.setBa_balance_id(rs.getString("ba_balance_id"));
+		model.setAc_status(rs.getInt("ac_status"));
 		model.setCreate_time(rs.getDate("create_time"));
 		model.setUpdate_time(rs.getDate("update_time"));
 		return model;

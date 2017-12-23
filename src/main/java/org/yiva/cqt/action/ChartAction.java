@@ -39,4 +39,13 @@ public class ChartAction {
 		res = chartService.showJouanlMonthPrice();
 		return res;
 	}
+	
+	@RequestMapping(value = { "/jounalBalance" }, method = RequestMethod.GET, headers = { "Accept=application/json;charset=UTF-8" })
+	public @ResponseBody String chartJounalBalance(HttpServletRequest req,
+			HttpServletResponse rep) throws IOException {
+//		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) req;
+		String res = "0";
+		res = chartService.showJouanlBalance("CQT");
+		return res;
+	}
 }

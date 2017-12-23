@@ -35,7 +35,7 @@ public class BaseDao {
 	protected HashMap<String, HashMap<String, String>> sql_map;
 
 	public enum SQLCATEGORY {
-		INSERT, UPDATE, SELECT
+		INSERT, UPDATE, DELETE, SELECT, PROCEDURE
 	}
 
 	public BaseDao() {
@@ -79,8 +79,14 @@ public class BaseDao {
 		case UPDATE:
 			sql = sql_map.get("update").get(name);
 			break;
+		case DELETE:
+			sql = sql_map.get("delete").get(name);
+			break;
 		case SELECT:
 			sql = sql_map.get("select").get(name);
+			break;
+		case PROCEDURE:
+			sql = sql_map.get("procedure").get(name);
 			break;
 		default:
 			break;

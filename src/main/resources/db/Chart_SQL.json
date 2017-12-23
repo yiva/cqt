@@ -22,6 +22,10 @@
 				{
 					"sql_name": "SQL_JOUNAL_MONTH_IN_AND_OUT",
 					"sql_str": "select * from v_jounal_by_month_in_and_out"
+				},
+				{
+					"sql_name": "SQL_JOUNAL_BALANCE_CURRENT",
+					"sql_str": "select ba_balance,ba_status from t_balance where id = 'CQT'"
 				}
 			]
 		}

@@ -5,4 +5,5 @@ public interface IChartService {
 
 	String showJounalCategoryCounts();
 	String showJouanlMonthPrice();
+	String showJouanlBalance(String id);
 }

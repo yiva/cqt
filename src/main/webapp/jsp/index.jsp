@@ -33,6 +33,35 @@
 
 				</div>
 				<div class="row-fluid">
+				<div class="span12">
+						<div class="box box-color box-bordered primary span6">
+							<div class="box-title">
+								<h3>
+									<i class="icon-table"></i> 当前余额
+								</h3>
+							</div>
+							<div class="box-content">
+								<div>
+									<div id="jounal_balance" style="height: 100px;"><h2 align="center"></h2></div>
+								</div>
+							</div>
+						</div>
+						<div class="box box-color box-bordered primary span6">
+							<div class="box-title">
+								<h3>
+									<i class="icon-table"></i> +++
+								</h3>
+							</div>
+							<div class="box-content">
+								<div>
+									<div id="jounal_other" style="height: 100px;"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					</div>
+				<div class="row-fluid">
+					
 					<div class="span12">
 						<div class="box box-color box-bordered primary span6">
 							<div class="box-title">
@@ -42,7 +71,7 @@
 							</div>
 							<div class="box-content">
 								<div>
-									<div id="jounal_category" style="height: 250px;"></div>
+									<div id="jounal_category" style="height: 250px;"><h2></h2></div>
 								</div>
 							</div>
 						</div>
@@ -67,7 +96,25 @@
 	<script type="text/javascript" src="<%=basePath%>js/echarts/jounal_category.js"></script>
 	<script type="text/javascript" src="<%=basePath%>js/echarts/jounal_month.js"></script>
 	<script type="text/javascript">
+	
 		$(function() {
+			$.ajax({
+				type : "GET",
+				url : "<%=basePath%>chart/jounalBalance",
+				data : {},
+				dataType : "json",
+				success : function(res) {
+					if ('0' != res) {
+						console.log(res.data_set.ba_balance);
+						$('#jounal_balance > h2').text(res.data_set.ba_balance);
+					}else {
+						console.log("初始化失败!");
+					}
+				},
+				error : function(res) {
+					console.log(res);
+				}
+			});
 			$.ajax({
 				type : "GET",
 				url : "<%=basePath%>chart/jounalCategory",
@@ -77,11 +124,11 @@
 					if ('0' != res) {
 						showJounalCategoryPie(res.data_name,res.data_set,'jounal_category');
 					}else {
-						alert("初始化失败!");
+						console.log("初始化失败!");
 					}
 				},
 				error : function(res) {
-					alert(res);
+					console.log(res);
 				}
 			});
 			$.ajax({
@@ -95,11 +142,11 @@
 						/* alert("初始化成功!"); */
 						showJounalSumMonthBar(res.data_name, res.data_set,'jounal_month');
 					} else {
-						alert("初始化失败!");
+						console.log("初始化失败!");
 					}
 				},
 				error : function(res) {
-					alert(res);
+					console.log(res);
 				}
 			});
 		});

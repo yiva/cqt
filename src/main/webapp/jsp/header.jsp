@@ -6,7 +6,7 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <div class="container-fluid">
-	<a id="brand"><spring:message code="sys.title"/></a>
+	<a id="brand" href="<%=basePath%>"><spring:message code="sys.title"/></a>
 	<a href="#" class="toggle-nav" rel="tooltip" data-placement="bottom" title="左边缩进"><i class="icon-reorder"></i></a>
 	
 	<div class="user">

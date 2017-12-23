@@ -16,6 +16,7 @@
 		<li><a href="<%=basePath %>report/showAccounts">台账查询</a></li>
 		<li><a href="<%=basePath %>report/showArticles">学习用品查询</a></li>
 		<li><a href="<%=basePath %>report/showJounals">流水账查询</a></li>
+		<li><a href="<%=basePath %>report/showJounalsTmp">流水账审核</a></li>
 	</ul>
 	<ul class="subnav-menu">
 		<li><a href="<%=basePath %>accountImport">台账录入</a></li>

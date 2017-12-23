@@ -5,13 +5,27 @@
 			"sql_arr": [
 				{
 					"sql_name": "SQL_JOUNAL_INSERT",
-					"sql_str": "insert into db_cqt.t_jounal(ac_category,ac_date,ac_type,ac_type_name,ac_content,ac_price,ac_operater,ac_channel,ac_save_style,ac_poudage,ac_comment,ac_rewarder,ac_rewarder_name,ac_student,ac_student_name,create_time,update_time) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+					"sql_str": "insert into db_cqt.t_jounal_tmp(ac_category,ac_date,ac_type,ac_type_name,ac_content,ac_price,ac_operater,ac_channel,ac_save_style,ac_poudage,ac_comment,ac_rewarder,ac_rewarder_name,ac_student,ac_student_name,create_time,update_time,ba_balance_id,ac_status) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,'CQT',0)"
 				}
 			]
 		},
 		{
 			"name": "update",
-			"sql_arr": []
+			"sql_arr": [
+				{
+					"sql_name": "SQL_JOUNAL_TMP_ALL_STATUS_UPDATE",
+					"sql_str": "update t_jounal_tmp set ac_status = ? where ac_status = ?"
+				}
+			]
+		},
+		{
+			"name": "delete",
+			"sql_arr": [
+				{
+					"sql_name": "SQL_JOUNAL_TMP_ALL_DELETE",
+					"sql_str": "truncate table t_jounal_tmp"
+				}
+			]
 		},
 		{
 			"name": "select",
@@ -23,6 +37,19 @@
 				{
 					"sql_name": "SQL_JOUNAL_ALL",
 					"sql_str": "select id,ac_category,ac_date,ac_type,ac_type_name,ac_content,ac_price,ac_operater,ac_channel,ac_save_style,ac_poudage,ac_comment,ac_rewarder,ac_rewarder_name,ac_student,ac_student_name,create_time,update_time from db_cqt.t_jounal"
+				},
+				{
+					"sql_name": "SQL_JOUNAL_TMP",
+					"sql_str": "select id,ac_category,ac_date,ac_type,ac_type_name,ac_content,ac_price,ac_operater,ac_channel,ac_save_style,ac_poudage,ac_comment,ac_rewarder,ac_rewarder_name,ac_student,ac_student_name,ac_status,create_time,update_time from db_cqt.t_jounal_tmp where ac_status = 0"
+				}
+			]
+		},
+		{
+			"name": "procedure",
+			"sql_arr": [
+				{
+					"sql_name": "SET_JOUNAL_PRO",
+					"sql_str": "call pro_set_jounal()"
 				}
 			]
 		}

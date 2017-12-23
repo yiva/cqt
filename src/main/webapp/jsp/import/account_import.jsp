@@ -100,6 +100,7 @@
 	<script type="text/javascript">
 		$(function(){
 			$('#reportSubmit').click(function(){
+				/* $('#reportSubmit').attr('disabled',"true"); */
 				$('#reportForm').submit(function() {
 
 			        $(this).ajaxSubmit({
@@ -112,9 +113,11 @@
 								alert('提交失败');
 							} else {
 								alert('提交成功！');
+								$(location).attr('href', "<%=basePath%>report/showJounalsTmp");
 							}
 						}
 					});
+			        $('#reportSubmit').removeAttr("disabled");
 					$(this).resetForm(); // 提交后重置表单
 					return false; // 阻止表单自动提交事件
 				});

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.yiva.cqt.core.IChartService;
 import org.yiva.cqt.dao.IChartDao;
+import org.yiva.cqt.model.Balance;
 import org.yiva.cqt.model.vo.JounalCategoryCountsVO;
 import org.yiva.cqt.model.vo.JounalMonthInAndOutVO;
 import org.yiva.cqt.model.vo.JounalMonthVO;
@@ -56,6 +57,14 @@ public class ChartServiceImpl implements IChartService{
 		data_set.put("data_in", data_in);
 		data_set.put("data_out", data_out);
 		JSONObject res = JSON.parseObject("{\"data_name\":"+data_name.toJSONString()+",\"data_set\":"+data_set.toJSONString()+"}");
+		return res.toJSONString();
+	}
+
+	@Override
+	public String showJouanlBalance(String id) {
+		Balance item = new Balance();
+		item = chartDao.showJounalBalance(id);
+		JSONObject res = JSON.parseObject("{\"data_name\":\"账户余额\",\"data_set\":"+item.toString()+"}");
 		return res.toJSONString();
 	}
 }

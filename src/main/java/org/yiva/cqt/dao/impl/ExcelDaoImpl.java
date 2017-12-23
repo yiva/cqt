@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import org.yiva.cqt.dao.BaseDao;
 import org.yiva.cqt.dao.ConstantSQL;
 import org.yiva.cqt.dao.IExcelDao;
+import org.yiva.cqt.dao.BaseDao.SQLCATEGORY;
 import org.yiva.cqt.model.Account;
 import org.yiva.cqt.model.Article;
 import org.yiva.cqt.model.Jounal;
@@ -120,9 +121,10 @@ public class ExcelDaoImpl extends BaseDao implements IExcelDao {
 
 	@Override
 	public int saveJounalFromExecl(final ArrayList<Jounal> arr) {
+		String sql = findSqlByName("SQL_JOUNAL_INSERT", SQLCATEGORY.INSERT);
 		int sum_inserted_count = 0;
 		int[] result_count_size = jdbcTemplate.batchUpdate(
-				ConstantSQL.SQL_JOUNAL_INSERT,
+				sql,
 				new BatchPreparedStatementSetter() {
 
 					@Override
