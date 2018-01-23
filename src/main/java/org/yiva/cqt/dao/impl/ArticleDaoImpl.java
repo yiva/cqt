@@ -2,19 +2,18 @@ package org.yiva.cqt.dao.impl;
 
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import org.yiva.cqt.dao.BaseDao;
-import org.yiva.cqt.dao.IAccountDao;
 import org.yiva.cqt.dao.IArticleDao;
-import org.yiva.cqt.model.Account;
 import org.yiva.cqt.model.Article;
 
 @Repository("articleDao")
 public class ArticleDaoImpl extends BaseDao implements IArticleDao{
 
-
+	private final Logger article_logger = Logger.getLogger(this.getClass());
 
 	public ArrayList<Article> queryArticles() {
 		StringBuffer sql = new StringBuffer();
@@ -29,6 +28,7 @@ public class ArticleDaoImpl extends BaseDao implements IArticleDao{
 					.query(sql.toString(), rowMapper);
 			return list;
 		} catch (Exception e) {
+			article_logger.warn(e.getMessage());
 			return null;
 		}
 	}

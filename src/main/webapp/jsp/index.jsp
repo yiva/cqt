@@ -49,12 +49,12 @@
 						<div class="box box-color box-bordered primary span6">
 							<div class="box-title">
 								<h3>
-									<i class="icon-table"></i> +++
+									<i class="icon-table"></i> 当月收支情况
 								</h3>
 							</div>
 							<div class="box-content">
 								<div>
-									<div id="jounal_other" style="height: 100px;"></div>
+									<div id="jounal_current_month" style="height: 100px;text-align:center;"></div>
 								</div>
 							</div>
 						</div>
@@ -98,6 +98,7 @@
 	<script type="text/javascript">
 	
 		$(function() {
+			//显示余额
 			$.ajax({
 				type : "GET",
 				url : "<%=basePath%>chart/jounalBalance",
@@ -105,16 +106,16 @@
 				dataType : "json",
 				success : function(res) {
 					if ('0' != res) {
-						console.log(res.data_set.ba_balance);
 						$('#jounal_balance > h2').text(res.data_set.ba_balance);
 					}else {
-						console.log("初始化失败!");
+						$('#jounal_balance > h2').text('暂无数据');
 					}
 				},
 				error : function(res) {
 					console.log(res);
 				}
 			});
+			//各类占比
 			$.ajax({
 				type : "GET",
 				url : "<%=basePath%>chart/jounalCategory",
@@ -131,6 +132,7 @@
 					console.log(res);
 				}
 			});
+			//当年各月情况
 			$.ajax({
 				type : "GET",
 				url : "<%=basePath%>chart/jounalMonth",
@@ -138,7 +140,6 @@
 				dataType : "json",
 				success : function(res) {
 					if ('0' != res) {
-						console.log(res)
 						/* alert("初始化成功!"); */
 						showJounalSumMonthBar(res.data_name, res.data_set,'jounal_month');
 					} else {
@@ -149,10 +150,37 @@
 					console.log(res);
 				}
 			});
+			//当月收支情况
+			$.ajax({
+				type : "GET",
+				url : "<%=basePath%>chart/jounalCurrentMonth",
+				data : {},
+				dataType : "json",
+				success : function(res) {
+					if ('0' != res) {
+						$('#jounal_current_month').html('<h4><span>当月入账：</span>'+res.data_set.price_in
+								+'<span>&nbsp;&nbsp;入账笔数：</span>'+res.data_set.counts_in+'</h4><h4><span>当月出账：</span>'
+								+res.data_set.price_out+'<span>&nbsp;&nbsp;出账笔数：</span>'+res.data_set.counts_out+'</h4>');
+					} else {
+						$('#jounal_current_month').html('<h2>暂无数据</h2>');
+					}
+				},
+				error : function(res) {
+					console.log(res);
+				}
+			});
 		});
 	</script>
 	<script type="text/javascript">
-		
+	/* window.onresize = function(){
+		j_month_bar.resize();
+		j_category_chart.resize();
+		} */
+	/*window.onresize = function(){
+		myChart.resize();
+		myChart2.resize();
+		myChart3.resize();
+		} */
 	</script>
 </body>
 </html>

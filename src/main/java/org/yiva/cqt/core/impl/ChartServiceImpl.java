@@ -29,6 +29,9 @@ public class ChartServiceImpl implements IChartService{
 		ArrayList<JounalCategoryCountsVO> arr = new ArrayList<>();
 		chartDao.showJounalMonthPrice();
 		arr = chartDao.showJounalCategoryCounts();
+		if(null == arr) {
+			return "0";
+		}
 		JSONArray data_name = new JSONArray();
 		JSONArray data_set = new JSONArray();
 		for(JounalCategoryCountsVO item : arr) {
@@ -45,6 +48,9 @@ public class ChartServiceImpl implements IChartService{
 	public String showJouanlMonthPrice() {
 		ArrayList<JounalMonthInAndOutVO> arr = new ArrayList<>();
 		arr = chartDao.showJounalMonthPrice();
+		if(null == arr) {
+			return "0";
+		}
 		JSONArray data_name = new JSONArray();
 		JSONObject data_set = new JSONObject();
 		JSONArray data_in = new JSONArray();
@@ -64,7 +70,24 @@ public class ChartServiceImpl implements IChartService{
 	public String showJouanlBalance(String id) {
 		Balance item = new Balance();
 		item = chartDao.showJounalBalance(id);
+		if(null == item) {
+			return "0";
+		}
 		JSONObject res = JSON.parseObject("{\"data_name\":\"账户余额\",\"data_set\":"+item.toString()+"}");
+		return res.toJSONString();
+	}
+
+	/**
+	 * {"j_month":"2018-01","price_in":"1111.11","count_in":"2000.00","price_out":"1111.11","count_out":"2000.00"}
+	 */
+	@Override
+	public String showJouanlCurrentMonthPrice() {
+		JounalMonthInAndOutVO item = new JounalMonthInAndOutVO();
+		item = chartDao.showJounalMonthPriceByCurrentMonth();
+		if(item == null) {
+			return "0";
+		}
+		JSONObject res = JSON.parseObject("{\"data_name\":\"当月收支情况\",\"data_set\":"+item.toString()+"}");
 		return res.toJSONString();
 	}
 }

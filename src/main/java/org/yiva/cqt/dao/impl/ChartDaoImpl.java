@@ -2,6 +2,7 @@ package org.yiva.cqt.dao.impl;
 
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -14,6 +15,8 @@ import org.yiva.cqt.model.vo.JounalMonthVO;
 
 @Repository("chartDao")
 public class ChartDaoImpl extends BaseDao implements IChartDao{
+	
+	private final Logger chart_logger = Logger.getLogger(this.getClass());
 	
 	@Override
 	public ArrayList<JounalCategoryCountsVO> showJounalCategoryCounts() {
@@ -39,7 +42,7 @@ public class ChartDaoImpl extends BaseDao implements IChartDao{
 			return list;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			logger.warn(e.getMessage());
+			chart_logger.warn(e.getMessage());
 		}
 		return null;
 	}
@@ -54,7 +57,22 @@ public class ChartDaoImpl extends BaseDao implements IChartDao{
 			return list.get(0);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			logger.warn(e.getMessage());
+			chart_logger.warn(e.getMessage());
+		}
+		return null;
+	}
+
+	@Override
+	public JounalMonthInAndOutVO showJounalMonthPriceByCurrentMonth() {
+		try {
+			RowMapper<JounalMonthInAndOutVO> rowMapper = new BeanPropertyRowMapper<JounalMonthInAndOutVO>(
+					JounalMonthInAndOutVO.class);
+			ArrayList<JounalMonthInAndOutVO> list = (ArrayList<JounalMonthInAndOutVO>) jdbcTemplate
+					.query(this.findSqlByName("SQL_JOUNAL_MONTH_IN_AND_OUT_BY_CURRENT_MONTH", SQLCATEGORY.SELECT), rowMapper);
+			return list.get(0);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			chart_logger.warn(e.getMessage());
 		}
 		return null;
 	}

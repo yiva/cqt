@@ -58,4 +58,10 @@ public class JounalMonthInAndOutVO implements RowMapper<JounalMonthInAndOutVO>,S
 		model.setPrice_out(rs.getFloat("price_out"));
 		return model;
 	}
+	@Override
+	public String toString() {
+		return "{\"j_month\":\"" + j_month + "\",\"price_in\":\"" + price_in + "\",\"counts_in\":\"" + counts_in
+				+ "\",\"price_out\":\"" + price_out + "\",\"counts_out\":\"" + counts_out + "\"}";
+	}
+	
 }

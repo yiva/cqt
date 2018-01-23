@@ -17,7 +17,7 @@
 
 	<!-- 静态资源处理 -->
 	<mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
-	<mvc:resources location="/front/" mapping="/front/**"></mvc:resources>
+	<mvc:resources location="/font/" mapping="/font/**"></mvc:resources>
 	<mvc:resources location="/img/" mapping="/img/**"></mvc:resources>
 	<mvc:resources location="/js/" mapping="/js/**"></mvc:resources>
 	<mvc:resources location="/css/" mapping="/css/**"></mvc:resources>

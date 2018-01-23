@@ -12,5 +12,7 @@ public interface IChartDao {
 	
 	ArrayList<JounalMonthInAndOutVO> showJounalMonthPrice();
 	
+	JounalMonthInAndOutVO showJounalMonthPriceByCurrentMonth();
+	
 	Balance showJounalBalance(String id);
 }
