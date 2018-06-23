@@ -37,6 +37,12 @@ public class ImportAction {
 		return mv;
 	}
 	
+	@RequestMapping(value = { "accountManualImport" })
+	public ModelAndView importAccountManualPage() {
+		ModelAndView mv = new ModelAndView("import/account_manual_import");
+		return mv;
+	}
+	
 	/**
 	 * 导入台账AcountExcel 
 	 * Ajax

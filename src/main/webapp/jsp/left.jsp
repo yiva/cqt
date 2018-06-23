@@ -20,6 +20,7 @@
 	</ul>
 	<ul class="subnav-menu">
 		<li><a href="<%=basePath %>accountImport">台账录入</a></li>
+		<li><a href="<%=basePath %>accountManualImport">手动台账录入</a></li>
 		<li><a href="<%=basePath %>articleImport">学习用品录入</a></li>
 	</ul>
 </div>
