@@ -92,5 +92,15 @@ public class ImportAction {
 		int res = excelService.importExcelArticle(in, file.getOriginalFilename());
 		return res + "";
 	}
+	
+	/**
+	 *  
+	 * @return
+	 */
+	@RequestMapping(value = { "/" })
+	public ModelAndView index() {
+		ModelAndView mv = new ModelAndView("index");
+		return mv;
+	} 
 
 }
