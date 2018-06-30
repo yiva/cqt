@@ -3,13 +3,46 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<!-- Apple devices fullscreen -->
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<!-- Apple devices fullscreen -->
-<meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width">
 
+
+<!--base css styles-->
+<link rel="stylesheet" href="<%=basePath %>assets/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="<%=basePath %>assets/bootstrap/bootstrap-responsive.min.css">
+<link rel="stylesheet" href="<%=basePath %>assets/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="<%=basePath %>assets/normalize/normalize.css">
+
+<!--flaty css styles-->
+<link rel="stylesheet" href="<%=basePath %>css/flaty.css">
+<link rel="stylesheet" href="<%=basePath %>css/flaty-responsive.css">
+
+<link rel="shortcut icon" href="<%=basePath %>img/favicon.html">
+
+<script src="<%=basePath %>assets/modernizr/modernizr-2.6.2.min.js"></script>
+
+<!--basic scripts-->
+        
+<script src="<%=basePath %>assets/bootstrap/bootstrap.min.js"></script>
+<script src="<%=basePath %>assets/bootstrap/bootstrap.min.js"></script>
+<script src="<%=basePath %>assets/nicescroll/jquery.nicescroll.min.js"></script>
+
+<!--page specific plugin scripts-->
+<script src="<%=basePath %>assets/flot/jquery.flot.js"></script>
+<script src="<%=basePath %>assets/flot/jquery.flot.resize.js"></script>
+<script src="<%=basePath %>assets/flot/jquery.flot.pie.js"></script>
+<script src="<%=basePath %>assets/flot/jquery.flot.stack.js"></script>
+<script src="<%=basePath %>assets/flot/jquery.flot.crosshair.js"></script>
+<script src="<%=basePath %>assets/flot/jquery.flot.tooltip.min.js"></script>
+<script src="<%=basePath %>assets/sparkline/jquery.sparkline.min.js"></script>
+
+<!--flaty scripts-->
+<script src="<%=basePath %>js/flaty.js"></script>
+
+
+        
 <!-- Tagsinput -->
 <link rel="stylesheet" href="<%=basePath %>css/plugins/tagsinput/jquery.tagsinput.css">
 <!-- multi select -->
