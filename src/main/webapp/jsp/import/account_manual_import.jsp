@@ -33,7 +33,7 @@
 				<div class="page-header"></div>
 				<div class="breadcrumbs">
 					<ul>
-						<li><a href="#">台账导入</a> <i class="icon-angle-right"></i></li>
+						<li><a href="#">台账录入</a> <i class="icon-angle-right"></i></li>
 					</ul>
 					<div class="close-bread">
 						<a href="#"><i class="icon-remove"></i></a>
@@ -44,7 +44,7 @@
 						<div class="box box-bordered">
 							<div class="box-title">
 								<h3>
-									<i class="icon-edit"></i>Excel导入
+									<i class="icon-edit"></i>台账录入
 								</h3>
 							</div>
 							<div class="box-content nopadding">
@@ -72,14 +72,45 @@
 										</div>
 									</div>
 									<div class="control-group">
-										<label for="file" class="control-label">表格</label>
+										<label for="select" class="control-label">台账性质</label>
 										<div class="controls">
-											<input type="file" name="file" id="file"
-												class="input-block-level">
+											<select name="ac_type" id="ac_type" class='input-large'>
+												<option value="1">转入</option>
+												<option value="2">转出</option>
+												<option value="3">收入</option>
+												<option value="4">开支</option>
+											</select>
 										</div>
 									</div>
 									<div class="control-group">
-										<label for="file" class="control-label"></label>
+										<label for="input" class="control-label">主题</label>
+										<div class="controls">
+											<input type="text" name="ac_title" id="ac_title"
+												class="input-block-level span3">
+										</div>
+									</div>
+									<div class="control-group">
+                                      <label class="control-label">日期</label>
+                                      <div class="controls">
+                                      		<input type="text" name="ac_date" id="ac_date"
+												class="input-block-level span3">
+                                      </div>
+                                   </div>
+									<div class="control-group">
+										<label for="input" class="control-label">金额</label>
+										<div class="controls">
+											<input type="text" name="ac_cost" id="ac_cost"
+												class="input-block-level span3">
+										</div>
+									</div>
+									<div class="control-group">
+										<label for="input" class="control-label">摘要</label>
+										<div class="controls">
+											<textarea name="ac_content" id="ac_content" class="span6" rows="3"></textarea>
+										</div>
+									</div>
+									<div class="control-group">
+										<label for="input" class="control-label"></label>
 										<div class="controls">
 											<button id="reportSubmit" class="btn btn-primary">确定</button>
 											<button class="btn btn-cancel">重置</button>
@@ -97,33 +128,11 @@
 	<!-- slimScroll -->
 	<script
 		src="<%=basePath%>js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-	<script type="text/javascript">
-		$(function(){
-			$('#reportSubmit').click(function(){
-				/* $('#reportSubmit').attr('disabled',"true"); */
-				$('#reportForm').submit(function() {
-
-			        $(this).ajaxSubmit({
-			            type: 'post', // 提交方式 get/post
-			            url: "<%=basePath%>imptExcelTest",
-						dataType : 'json',
-						success : function(data) { // data 保存提交后返回的数据，一般为 json 数据
-							// 此处可对 data 作相关处理
-							if (data == -1) {
-								alert('提交失败');
-							} else {
-								alert('提交成功！');
-								$(location).attr('href', "<%=basePath%>report/showJounalsTmp");
-							}
-						}
-					});
-			        $('#reportSubmit').removeAttr("disabled");
-					$(this).resetForm(); // 提交后重置表单
-					return false; // 阻止表单自动提交事件
-				});
+		<script type="text/javascript">
+			$(function(){
+				alert();
 			});
-		});
-	</script>
+		</script>
 </body>
 
 </html>

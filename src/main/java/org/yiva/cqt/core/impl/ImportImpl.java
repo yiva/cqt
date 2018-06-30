@@ -7,8 +7,9 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import org.yiva.cqt.core.IExcel;
+import org.yiva.cqt.core.IImport;
 import org.yiva.cqt.dao.IExcelDao;
+import org.yiva.cqt.dao.IImportDao;
 import org.yiva.cqt.model.Account;
 import org.yiva.cqt.model.Article;
 import org.yiva.cqt.model.Jounal;
@@ -16,13 +17,16 @@ import org.yiva.cqt.utils.ExcelCqt;
 import org.yiva.cqt.utils.ExcelCqtJounal;
 import org.yiva.cqt.utils.ExcelUtil;
 
-@Service("excelService")
-public class ExcelImportImpl implements IExcel {
+@Service("importService")
+public class ImportImpl implements IImport {
 
 	@Autowired
 	@Qualifier("excelDao")
 	private IExcelDao excelDao;
 
+	@Autowired
+	@Qualifier("importDao")
+	private IImportDao importDao;
 	@Override
 	public int importExcelAccount(InputStream in, String filename, String account_category) {
 		int flag = -1;
@@ -104,6 +108,20 @@ public class ExcelImportImpl implements IExcel {
 			flag = -1;
 			e.printStackTrace();
 		} 
+		return flag;
+	}
+
+	@Override
+	public int inportSingleJounal(Jounal jounal) {
+		int flag = -1;
+		try {
+			int res = importDao.saveSingleJounal(jounal);
+			if (1 == res) {
+				flag = 0;
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		return flag;
 	}
 }

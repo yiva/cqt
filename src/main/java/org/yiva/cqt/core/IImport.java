@@ -2,7 +2,9 @@ package org.yiva.cqt.core;
 
 import java.io.InputStream;
 
-public interface IExcel {
+import org.yiva.cqt.model.Jounal;
+
+public interface IImport {
 	
 	int importExcelAccount(InputStream in, String filename, String account_category);
 	
@@ -10,4 +12,5 @@ public interface IExcel {
 	
 	int importExcelJounal(InputStream in, String filename);
 
+	int inportSingleJounal(Jounal jounal);
 }

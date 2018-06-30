@@ -6,6 +6,10 @@
 				{
 					"sql_name": "SQL_JOUNAL_INSERT",
 					"sql_str": "insert into db_cqt.t_jounal_tmp(ac_category,ac_date,ac_type,ac_type_name,ac_content,ac_price,ac_operater,ac_channel,ac_save_style,ac_poudage,ac_comment,ac_rewarder,ac_rewarder_name,ac_student,ac_student_name,create_time,update_time,ba_balance_id,ac_status) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,'CQT',0)"
+				},
+				{
+					"sql_name": "SQL_JOUNAL_INSERT_MAUNAL",
+					"sql_str": "insert into db_cqt.t_jounal(ac_category,ac_date,ac_type,ac_type_name,ac_content,ac_price,ac_operater,ac_channel,ac_save_style,ac_poudage,ac_comment,ac_rewarder,ac_rewarder_name,ac_student,ac_student_name,create_time,update_time,ba_balance_id,ac_status) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,'CQT',0)"
 				}
 			]
 		},

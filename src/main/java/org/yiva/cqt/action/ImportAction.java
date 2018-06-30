@@ -15,15 +15,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
-import org.yiva.cqt.core.IExcel;
+import org.yiva.cqt.core.IImport;
+import org.yiva.cqt.model.Jounal;
 
 @Controller
 @RequestMapping(value = { "/","/import" })
 public class ImportAction {
 	
 	@Autowired
-	@Qualifier("excelService")
-	private IExcel excelService;
+	@Qualifier("importService")
+	private IImport importService;
+	
 	
 	@RequestMapping(value = { "accountImport" })
 	public ModelAndView importAccountPage() {
@@ -62,9 +64,9 @@ public class ImportAction {
 		in = file.getInputStream();
 		int res = 0;
 		if ("jounal".equals(account_category)) {
-			res = excelService.importExcelJounal(in, file.getOriginalFilename());
+			res = importService.importExcelJounal(in, file.getOriginalFilename());
 		}else {
-			res = excelService.importExcelAccount(in, file.getOriginalFilename(),
+			res = importService.importExcelAccount(in, file.getOriginalFilename(),
 					account_category);
 		}
 		
@@ -89,18 +91,19 @@ public class ImportAction {
 		MultipartFile file = multipartRequest.getFile("file");
 		in = file.getInputStream();
 		
-		int res = excelService.importExcelArticle(in, file.getOriginalFilename());
+		int res = importService.importExcelArticle(in, file.getOriginalFilename());
 		return res + "";
 	}
 	
-	/**
-	 *  
-	 * @return
-	 */
-	@RequestMapping(value = { "/" })
-	public ModelAndView index() {
-		ModelAndView mv = new ModelAndView("index");
-		return mv;
-	} 
+	@RequestMapping(value = { "/imptExcelWithArticle" }, method = RequestMethod.POST, headers = { "Accept=application/json" })
+	public @ResponseBody String SingleImportJounal(HttpServletRequest req,
+			HttpServletResponse rep) throws IOException {
+		//台账类别
+//		String account_category = req.getParameter("account_category");
+		//获取上传文件
+		Jounal jounal = new Jounal();
+		int res = importService.inportSingleJounal(jounal);
+		return res + "";
+	}
 
 }
