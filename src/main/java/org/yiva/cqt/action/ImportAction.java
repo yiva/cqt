@@ -95,7 +95,7 @@ public class ImportAction {
 		return res + "";
 	}
 	
-	@RequestMapping(value = { "/imptExcelWithArticle" }, method = RequestMethod.POST, headers = { "Accept=application/json" })
+	@RequestMapping(value = { "/importMaunalSingleJounal" }, method = RequestMethod.POST, headers = { "Accept=application/json" })
 	public @ResponseBody String SingleImportJounal(HttpServletRequest req,
 			HttpServletResponse rep) throws IOException {
 		//台账类别
