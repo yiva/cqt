@@ -8,25 +8,26 @@
 			+ path + "/";
 %>
 <!DOCTYPE html>
-<html>
+<html class="no-js">
 <head>
 
 <title><spring:message code="sys.title" /></title>
 <jsp:include page="js.jsp"></jsp:include>
 </head>
 <body>
-	<div id="navigation">
-		<!--header-->
-		<jsp:include page="header.jsp"></jsp:include>
+	<div id="navbar" class="navbar">
+		<div class="navbar-inner">
+			<!--header-->
+			<jsp:include page="header.jsp"></jsp:include>
+		</div>
 	</div>
-	<div class="container-fluid" id="content">
+	<div class="container-fluid" id="main-container">
 		<!-- 左边栏 -->
-		<div id="left">
+		<div d="sidebar" class="nav-collapse">
 			<jsp:include page="left.jsp"></jsp:include>
 		</div>
-		<div id="main">
-			<div class="container-fluid">
-				<div class="page-header">
+		<div id="main-content">
+				<div class="page-title">
 					<div class="pull-left">
 						<h1></h1>
 					</div>
@@ -90,7 +91,6 @@
 					</div>
 				</div>
 			</div>
-		</div>
 	</div>
 	<script type="text/javascript" src="<%=basePath%>js/echarts/echarts.js"></script>
 	<script type="text/javascript" src="<%=basePath%>js/echarts/jounal_category.js"></script>

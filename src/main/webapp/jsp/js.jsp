@@ -24,8 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="<%=basePath %>assets/modernizr/modernizr-2.6.2.min.js"></script>
 
 <!--basic scripts-->
-        
-<script src="<%=basePath %>assets/bootstrap/bootstrap.min.js"></script>
+<script src="<%=basePath %>assets/jquery/jquery-1.10.1.min.js"></script>        
 <script src="<%=basePath %>assets/bootstrap/bootstrap.min.js"></script>
 <script src="<%=basePath %>assets/nicescroll/jquery.nicescroll.min.js"></script>
 
