@@ -7,43 +7,43 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html class="no-js">
 <head>
 
 <title>流水账 - <spring:message code="sys.title" /></title>
-<jsp:include page="../js.jsp"></jsp:include>
-<!-- dataTables -->
-<link rel="stylesheet"
-	href="<%=basePath%>css/plugins/datatable/TableTools.css">
+<jsp:include page="../css.jsp"></jsp:include>
 </head>
 <body>
-	<div id="navigation">
-		<!--header-->
-		<jsp:include page="../header.jsp"></jsp:include>
-	</div>
-	<div class="container-fluid" id="content">
+	<!--header-->
+	<jsp:include page="../header.jsp"></jsp:include>
+	<div class="container-fluid" id="main-container">
 		<!-- 左边栏 -->
-		<div id="left">
-			<jsp:include page="../left.jsp"></jsp:include>
-		</div>
-		<div id="main">
-			<div class="container-fluid">
-				<div class="page-header"></div>
-				<div class="breadcrumbs">
-					<ul>
-						<li><a href="#">流水账查询</a> <i class="icon-angle-right"></i></li>
-					</ul>
-					<div class="close-bread">
-						<a href="#"><i class="icon-remove"></i></a>
-					</div>
+		<jsp:include page="../left.jsp"></jsp:include>
+		<div id="main-content">
+			<!-- BEGIN Page Title -->
+			<div class="page-title">
+				<div>
+					<h1>
+						<i class="icon-file-alt"></i> 流水账查询
+					</h1>
 				</div>
-				<div class="row-fluid">
+				<!-- END Page Title -->
+			</div>
+			<!-- BEGIN Breadcrumb -->
+			<div id="breadcrumbs">
+				<ul class="breadcrumb">
+					<li class="active"><i class="icon-home"></i> 流水账查询</li>
+				</ul>
+			</div>
+			<!-- END Breadcrumb -->
+			
+			<div class="row-fluid">
 					<div class="span12">
-						<div class="box">
+						<div class="box box-black">
 							<div class="box-content">
 								<div class="span12">
-									<div class="box box-color box-bordered primary">
+									<div class="box box-black">
 										<div class="box-title">
 											<h3>
 												<i class="icon-table"></i> 流水账查询
@@ -106,10 +106,9 @@
 						</div>
 					</div>
 				</div>
-			</div>
 		</div>
 	</div>
-
+<jsp:include page="../js.jsp"></jsp:include>
 	<!-- slimScroll -->
 	<script
 		src="<%=basePath%>js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
