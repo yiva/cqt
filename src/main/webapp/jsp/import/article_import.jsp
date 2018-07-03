@@ -87,6 +87,7 @@
 		src="<%=basePath%>js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 	<script type="text/javascript">
 		$(function(){
+			switchNavActive("#sidebar-nav-input-article");
 			$('#reportSubmit').click(function(){
 				$('#reportForm').submit(function() {
 

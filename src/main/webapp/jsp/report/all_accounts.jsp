@@ -103,6 +103,7 @@
 		src="<%=basePath%>js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 	<script type="text/javascript">
 		$(function() {
+			switchNavActive("#sidebar-nav-query-accounts");
 			$("#mkCurrentRepo").click(function() {
 				$.ajax({
 					type : "GET",

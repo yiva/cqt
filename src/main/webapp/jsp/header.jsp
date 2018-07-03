@@ -26,7 +26,7 @@
 				<!-- BEGIN Button User -->
 				<li class="user-profile"><a data-toggle="dropdown" href="#"
 					class="user-menu dropdown-toggle"> <img class="nav-user-photo"
-						src="img/demo/avatar/avatar1.jpg" alt="Penny's Photo" /> <span
+						src="<%=basePath%>img/demo/avatar/avatar1.jpg" alt="Penny's Photo" /> <span
 						class="hidden-phone" id="user_info"> 用户名 </span> <i
 						class="icon-caret-down"></i>
 				</a> <!-- BEGIN User Dropdown -->

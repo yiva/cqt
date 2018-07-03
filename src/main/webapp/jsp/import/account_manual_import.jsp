@@ -14,6 +14,7 @@
 
 <title>报表操作 - <spring:message code="sys.title" /></title>
 <jsp:include page="../css.jsp"></jsp:include>
+<link rel="stylesheet" type="text/css" href="<%=basePath%>assets/bootstrap-datepicker/css/datepicker.css" />
 </head>
 <body>
 	<!--header-->
@@ -90,10 +91,11 @@
 										</div>
 									</div>
 									<div class="control-group">
-                                      <label class="control-label">日期</label>
+									<label class="control-label">日期</label>
                                       <div class="controls">
-                                      		<input type="text" name="ac_date" id="ac_date"
-												class="input-block-level span3">
+                                         <div class="input-append date date-picker" data-date="2012-12-02" data-date-format="yyyy-mm-dd" data-date-viewmode="years">
+                                            <input id="current-date" class="date-picker" size="16" type="text" value="" /><span class="add-on"><i class="icon-calendar"></i></span>
+                                         </div>
                                       </div>
                                    </div>
 									<div class="control-group">
@@ -124,12 +126,14 @@
 		</div>
 	</div>
 	<jsp:include page="../js.jsp"></jsp:include>
-	<!-- slimScroll -->
+	<script type="text/javascript" src="<%=basePath%>assets/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 	<script
 		src="<%=basePath%>js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 		<script type="text/javascript">
 			$(function(){
-				alert();
+				switchNavActive("#sidebar-nav-input-maunal");
+				var curDate = new Date();
+				$("#current-date").val(curDate);
 			});
 		</script>
 </body>

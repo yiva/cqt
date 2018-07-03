@@ -113,7 +113,7 @@
 	<script
 		src="<%=basePath%>js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 	<script type="text/javascript">
-		
+		switchNavActive("#sidebar-nav-query-jounals");
 	</script>
 </body>
 

@@ -120,6 +120,7 @@
 		src="<%=basePath%>js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 	<script type="text/javascript">
 		$(function(){
+			switchNavActive("#sidebar-nav-query-jounals-tmp");
 			$('#btn_set_status_true').click(function(){
 				$.ajax({
 	             	type: 'post', // 提交方式 get/post
