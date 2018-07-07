@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,6 +18,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.yiva.cqt.core.IImport;
 import org.yiva.cqt.model.Jounal;
+import org.yiva.cqt.utils.JounalCategory;
 
 @Controller
 @RequestMapping(value = { "/","/import" })
@@ -96,12 +98,10 @@ public class ImportAction {
 	}
 	
 	@RequestMapping(value = { "/importMaunalSingleJounal" }, method = RequestMethod.POST, headers = { "Accept=application/json" })
-	public @ResponseBody String SingleImportJounal(HttpServletRequest req,
+	public @ResponseBody String SingleImportJounal(@ModelAttribute("jounal") Jounal jounal,HttpServletRequest req,
 			HttpServletResponse rep) throws IOException {
-		//台账类别
-//		String account_category = req.getParameter("account_category");
-		//获取上传文件
-		Jounal jounal = new Jounal();
+		String category = JounalCategory.getNameByEn(jounal.getAc_category());
+		jounal.setAc_category(category);
 		int res = importService.inportSingleJounal(jounal);
 		return res + "";
 	}

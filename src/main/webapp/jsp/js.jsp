@@ -6,6 +6,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!--basic scripts-->
         
 <script src="<%=basePath %>assets/jquery/jquery-1.10.1.min.js"></script>
+<script src="<%=basePath %>assets/jquery/jquery.form.min.js"></script>
 <script src="<%=basePath %>assets/bootstrap/bootstrap.min.js"></script>
 <script src="<%=basePath %>assets/nicescroll/jquery.nicescroll.min.js"></script>
 

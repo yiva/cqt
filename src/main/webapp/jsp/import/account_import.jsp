@@ -94,8 +94,6 @@
 	</div>
 	<jsp:include page="../js.jsp"></jsp:include>
 	<!-- slimScroll -->
-	<script
-		src="<%=basePath%>js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 	<script type="text/javascript">
 		$(function(){
 			switchNavActive("#sidebar-nav-input-account");

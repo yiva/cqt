@@ -13,41 +13,41 @@ import org.springframework.jdbc.core.RowMapper;
  * @author yiva 对应t_account
  *
  */
-public class Jounal implements RowMapper<Jounal>,Serializable  {
+public class Jounal implements RowMapper<Jounal>, Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	/**
 	 * 
 	 */
 	private Integer id;// ID
 	private String ac_category;// 台账类型(0：一对一，1:公益金，2：赞赏款，3：奖学金，4：滞留助学金收支，5：其他，6：独立流水，7：微信提现流水，8：微信公众号入账，9：余额宝收益,10:待助)
 	private String ac_date;// 日期
-	private Date ac_date_t;//读取日期
+	private Date ac_date_t;// 读取日期
 	private Integer ac_type;// 收支类别(1:转入，2：转出，3：收入，4：开支)
 	private String ac_type_name;// 收支类别名(1:转入，2：转出，3：收入，4：开支)
 	private String ac_content;// 摘要
 	private Float ac_price;// 收支金额
-	private Float ac_price_in;//收入
-	private Float ac_price_out;//支出
+	private Float ac_price_in;// 收入
+	private Float ac_price_out;// 支出
 	private String ac_operater;// 经手人
-	private String ac_channel;//进款通道
-	private String ac_save_style;//款项结存
-	private Float ac_poudage;//提现费
+	private String ac_channel;// 进款通道
+	private String ac_save_style;// 款项结存
+	private Float ac_poudage;// 提现费
 	private String ac_comment;// 备注
-	private String ac_rewarder;//资助人
-	private String ac_rewarder_name;//资助人
-	private String ac_student;//学生编号
-	private String ac_student_name;//学生
-	private String ba_balance_id;//余额表ID
-	private Integer ac_status;//是否插入正式表状态
+	private String ac_rewarder;// 资助人
+	private String ac_rewarder_name;// 资助人
+	private String ac_student;// 学生编号
+	private String ac_student_name;// 学生
+	private String ba_balance_id;// 余额表ID
+	private Integer ac_status;// 是否插入正式表状态
 
-	private Date create_time;//创建时间
-	private Date update_time;//更新时间
-	
+	private Date create_time;// 创建时间
+	private Date update_time;// 更新时间
+
 	public Integer getId() {
 		return id;
 	}
@@ -89,7 +89,7 @@ public class Jounal implements RowMapper<Jounal>,Serializable  {
 	}
 
 	public Float getAc_price() {
-		return ac_price;
+		return ac_price == null ? 0.0f : ac_price;
 	}
 
 	public void setAc_price(Float ac_price) {
@@ -104,7 +104,6 @@ public class Jounal implements RowMapper<Jounal>,Serializable  {
 		this.ac_operater = ac_operater;
 	}
 
-
 	public String getAc_comment() {
 		return ac_comment;
 	}
@@ -112,6 +111,7 @@ public class Jounal implements RowMapper<Jounal>,Serializable  {
 	public void setAc_comment(String ac_comment) {
 		this.ac_comment = ac_comment;
 	}
+
 	public String getAc_channel() {
 		return ac_channel;
 	}
@@ -129,7 +129,7 @@ public class Jounal implements RowMapper<Jounal>,Serializable  {
 	}
 
 	public Float getAc_poudage() {
-		return ac_poudage;
+		return ac_poudage == null ? 0.0f : ac_poudage;
 	}
 
 	public void setAc_poudage(Float ac_poudage) {
@@ -185,7 +185,7 @@ public class Jounal implements RowMapper<Jounal>,Serializable  {
 	}
 
 	public Float getAc_price_in() {
-		return ac_price_in;
+		return ac_price_in == null ? 0.0f :ac_price_in;
 	}
 
 	public void setAc_price_in(Float ac_price_in) {
@@ -193,7 +193,7 @@ public class Jounal implements RowMapper<Jounal>,Serializable  {
 	}
 
 	public Float getAc_price_out() {
-		return ac_price_out;
+		return ac_price_out == null ? 0.0f : ac_price_out;
 	}
 
 	public void setAc_price_out(Float ac_price_out) {

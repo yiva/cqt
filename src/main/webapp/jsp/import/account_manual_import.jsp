@@ -49,14 +49,12 @@
 								</h3>
 							</div>
 							<div class="box-content">
-								<form id="reportForm" action="#" method="post"
-									enctype="mutlipart/form-data"
-									class='form-horizontal form-bordered'>
+								<form id="import-form" action="" method="post" class='form-horizontal form-bordered'>
 									<div class="control-group">
 										<label for="select" class="control-label">台账类别</label>
 										<div class="controls">
-											<select name="account_category" id="account_category" class='input-large'>
-												<option value="all">所有台账</option>
+											<select name="ac_category" id="ac_category" class='input-large'>
+												<option value="jounal">流水账</option>
 												<option value="one">一对一</option>
 												<option value="gongyi">公益金</option>
 												<option value="zanshang">赞赏款</option>
@@ -68,7 +66,6 @@
 												<option value="wqgongzhong">微信公众号入账	</option>
 												<option value="yuebao">余额宝收益</option>
 												<option value="daizhu">待助</option>
-												<option value="jounal">流水账</option>
 											</select>
 										</div>
 									</div>
@@ -94,7 +91,7 @@
 									<label class="control-label">日期</label>
                                       <div class="controls">
                                          <div class="input-append date date-picker" data-date="2012-12-02" data-date-format="yyyy-mm-dd" data-date-viewmode="years">
-                                            <input id="current-date" class="date-picker" size="16" type="text" value="" /><span class="add-on"><i class="icon-calendar"></i></span>
+                                            <input id="ac-date" name="ac-date" class="date-picker" size="16" type="text" value="" /><span class="add-on"><i class="icon-calendar"></i></span>
                                          </div>
                                       </div>
                                    </div>
@@ -114,7 +111,7 @@
 									<div class="control-group">
 										<label for="input" class="control-label"></label>
 										<div class="controls">
-											<button id="reportSubmit" class="btn btn-primary">确定</button>
+											<button id="btn-submit" class="btn btn-primary">确定</button>
 											<button class="btn btn-cancel">重置</button>
 										</div>
 									</div>
@@ -127,13 +124,49 @@
 	</div>
 	<jsp:include page="../js.jsp"></jsp:include>
 	<script type="text/javascript" src="<%=basePath%>assets/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-	<script
-		src="<%=basePath%>js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 		<script type="text/javascript">
 			$(function(){
 				switchNavActive("#sidebar-nav-input-maunal");
-				var curDate = new Date();
-				$("#current-date").val(curDate);
+				Date.prototype.Format = function(fmt)   
+				{ //author: meizz   
+				  var o = {   
+				    "M+" : this.getMonth()+1,                 //月份   
+				    "d+" : this.getDate(),                    //日   
+				    "h+" : this.getHours(),                   //小时   
+				    "m+" : this.getMinutes(),                 //分   
+				    "s+" : this.getSeconds(),                 //秒   
+				    "q+" : Math.floor((this.getMonth()+3)/3), //季度
+				    "S"  : this.getMilliseconds()             //毫秒   
+				  };   
+				  if(/(y+)/.test(fmt))   
+				    fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));   
+				  for(var k in o)   
+				    if(new RegExp("("+ k +")").test(fmt))   
+				  fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));   
+				  return fmt;   
+				}  
+				$("#ac-date").val(new Date().Format("yyyy-MM-dd"));
+				
+				$('#btn-submit').click(function(){
+					$('#import-form').submit(function() {
+
+				        $(this).ajaxSubmit({
+				            type: 'post',
+				            url: '<%=basePath%>import/importMaunalSingleJounal',
+							dataType : 'json',
+							success : function(data) { 
+								if (data == -1) {
+									alert('提交失败');
+								} else {
+									alert('提交成功！');
+								}
+							}
+						});
+					$('#btn-submit').removeAttr("disabled");
+					$(this).resetForm(); // 提交后重置表单
+						return false; // 阻止表单自动提交事件
+					});
+				});
 			});
 		</script>
 </body>

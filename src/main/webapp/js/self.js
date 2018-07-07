@@ -7,3 +7,4 @@ function switchNavActive(id){
 		$(id).parent().parent().addClass("active");
 	}
 }
+
